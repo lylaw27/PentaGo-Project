@@ -1,0 +1,332 @@
+#background {
+  background-image: url("../images/bgimg.jpg");
+  background-position: fixed;
+  background-size: cover;
+  color: white;
+  width: 100%;
+  height: 47vw;
+}
+#background #title {
+  position: relative;
+  text-align: right;
+  top: 40%;
+  left: 50%;
+  width: 40%;
+}
+#background .filter {
+  height: 100%;
+}
+#background #title h1 {
+  font-size: 5vw;
+}
+#background #title h2 {
+  font-size: 3vw;
+}
+#background #title p {
+  font-size: 1.5vw;
+  padding-top: 1%;
+  
+}
+#background #title #break{
+  display: none;
+}
+#background #searchbox {
+  display: none;
+  position: relative;
+  top: 100px;
+  right: 100px;
+  width: 400px;
+  height: 500px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  padding: 20px;
+  font-weight: 900;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.9);
+}
+#background #searchbox form label {
+  color: #242424;
+  padding: 10px 10px;
+}
+#background #searchbox form input[type=text], #background #searchbox form select {
+  width: 95%;
+  padding: 12px 20px;
+  margin: 10px 10px 20px 10px;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #242424;
+  font-weight: 900;
+}
+#background #searchbox form input[type=submit] {
+  position: relative;
+  top: 15px;
+  display: block;
+  width: 95%;
+  background-color: #BE2C2D;
+  padding: 14px 20px;
+  margin: auto;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: 400;
+  cursor: pointer;
+}
+#background #searchbox form input[type=submit]:hover {
+  background-color: #BE2C2D;
+}
+#featured{
+  height: 40vw;
+  background-color: #ededed;
+}
+#featured h1{
+  margin: auto;
+  position: relative;
+  text-align: center;
+  top: 5%;
+  height: 20%;
+}
+#newproperty {
+  display: flex;
+  justify-content: center;
+  height: 80%;
+}
+#newproperty .col {
+  position: relative;
+  background-color: white;
+  height: 80%;
+  width: calc(32vw*0.75*0.8);
+  top: 10%;
+  margin: 0 1.5vw;
+  line-height: 1.1;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+}
+#newproperty .col:hover {
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+}
+#newproperty .col img {
+  height: calc(30vw*0.75*0.8*0.6);
+  width: 100%;
+}
+#newproperty .col .description {
+  padding: 7%;
+}
+#newproperty .col .description p{
+  font-size: 1.3vw;
+}
+#newproperty .col .description h3{
+  font-size: 1.8vw;
+  margin-bottom: 5px;
+}
+
+#gridsec {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 34% 34% 32%;
+}
+#gridsec #img1 {
+  grid-area: 1/1/2/2;
+}
+#gridsec #img2 {
+  grid-area: 1/2/2/3;
+}
+#gridsec #img3 {
+  grid-area: 2/1/3/2;
+}
+#gridsec #img4 {
+  grid-area: 2/2/3/3;
+}
+#gridsec #img5 {
+  grid-area: 3/3/4/4;
+}
+#gridsec #gridcol {
+  grid-area: 1/3/3/4;
+  background-color: #BE2C2D;
+  padding: 8%;
+  position: relative;
+}
+#gridsec #gridcol h1 {
+  color: white;
+  font-size: 4vw;
+  position: absolute;
+  bottom: 5%;
+}
+#gridsec #gridrow {
+  grid-area: 3/1/4/3;
+  background-color: #383838;
+  position: relative;
+}
+#gridsec #gridrow h1 {
+  color: white;
+  font-size: 4vw;
+  text-align: center;
+  padding-top: 8%;
+}
+#gridsec #gridrow p {
+  text-align: center;
+  color: white;
+  font-size: 1.2vw;
+  padding: 4% 2vw;
+}
+#gridsec img {
+  width: 100%;
+}
+
+#rowsec {
+  background-image: url("../images/rowsec.jpg");
+  background-position: fixed;
+  background-size: cover;
+  width: 100%;
+  height: 47vw;
+  text-align: right;
+  padding: 15% 5% 0 60%;
+}
+#rowsec h1 {
+  font-size: 4vw;
+}
+#rowsec p {
+  font-size: 1.2vw;
+  font-weight: 600;
+}
+#rowsec button {
+  background-color: transparent;
+  border-radius: 3vw;
+  border: 2px solid black;
+  padding: 1vw 2vw;
+  font-size: 1.5vw;
+  font-weight: 600;
+}
+#rowsec button:hover {
+  color: white;
+  background-color: black;
+}
+#rowsec button:focus {
+  outline: none;
+  box-shadow: none;
+}
+#mobilegrid{
+  display: none;
+  background-image: url("../images/mobilegrid.jpg");
+  background-position: fixed;
+  background-size: cover;
+  height: 150vw;
+}
+#mobilegrid div{
+    position: relative;
+    text-align: center;
+    color: white;
+    padding: 15vh 7%;
+}
+#mobilegrid h1{
+  font-size: 10vw;
+}
+#mobilegrid p{
+  font-size: 15px;
+  max-width: 280px;
+  margin: auto;
+}
+@media only screen and (max-width: 500px) {
+  #background{
+    background-image: url("../images/bgmobile.jpg");
+    height: 150vw;
+  }
+  #background #title{
+    text-align: center;
+    top: 15vh;
+    width: 100%;
+    left:0;
+    margin: auto;
+    color: white;
+  }
+  #background #title h1{
+    font-size: 45px;
+  }
+  #background #title h2{
+    font-size: 30px;
+  }
+  #background #title #eng{
+    font-size: 0px;
+  }
+  #background #title p{
+    font-size: 15px;
+    max-width: 300px;
+    margin: auto;
+  }
+  #background #title #break{
+    display: block;
+  }
+  .filter{
+    background-color: rgba(50, 50, 50, 0.5);
+    height: 100%;
+  }
+  #gridsec{
+    display: none;
+  }
+  #featured{
+    height: 1700px;
+  }
+  #featured h1{
+    font-size: 35px;
+    top: 30px;
+    height: 5%;
+  }
+  #newproperty{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 95%;
+  }
+  #newproperty .col{
+    height: 350px;  
+    width: 75%;
+    text-align: center;
+    margin: 20px 0;
+    top:0;
+  }
+  #newproperty .col img{
+    height: auto;
+  }
+  #newproperty .col .description p{
+    font-size: 15px;
+  }
+  #newproperty .col .description h3{
+    font-size: 20px;
+  }
+  #mobilegrid{
+    display: block;
+  }
+  #rowsec{
+    background-image: url("../images/mobilerow.png");
+    height: 130vw;
+    padding: 7% 5%;
+    text-align: center;
+  }
+  #rowsec h1 {
+    font-size: 35px;
+  }
+  #rowsec p {
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    max-width: 300px;
+    margin: auto;
+    margin-top: 45%;
+  }
+  #rowsec button {
+    background-color: transparent;
+    border-radius: 50px;
+    border: 3px solid white;  
+    color: white;
+    padding: 15px 25px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  #rowsec button:hover {
+    color: white;
+    background-color: black;
+  }
+  #rowsec button:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+/*# sourceMappingURL=style.css.map */

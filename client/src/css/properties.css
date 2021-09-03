@@ -1,0 +1,105 @@
+#filter{
+    height: 80px;
+    
+}
+#form-flex{
+    display: flex;
+    align-items: center;
+    height: 80px;
+    margin-left: 9%;
+    margin-right: 20px;
+    max-width: 1100px;
+}
+#filter .styled-select{
+    width: 250px;
+    position: relative;
+    margin: 0 1%;
+}
+
+#filter select{
+    border-radius: 5px;
+    padding: 13px 0 13px 45px;
+    font-size: 15px;
+    font-weight: 600;
+    appearance: none;
+    width: 100%;
+}
+#filter option{
+    font-size: 15px;
+    border-radius: 5px;
+}
+#filter i{
+    position: absolute;
+    left: 12px;
+    top: 15px;
+    font-size: 20px;
+    pointer-events: none;
+}
+
+#filter .fa-chevron-down{
+    top: 15px;
+    margin: 0 30px 0 0;
+    left: 85%;
+    right: 0px;
+}
+
+#filter input[type=submit] {
+    background-color: #BE2C2D;
+    border-radius: 10px;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 40px;
+    font-size: 20px;
+    font-weight: 600;
+}
+#listings{
+    height: 2300px;
+    background-color: #e6e6e6;
+}
+#listings h1{
+    font-size: 35px;
+    margin-left: 9%;
+    padding-top: 30px;
+}
+
+.listed{
+    max-width: 1000px;
+    margin: 30px 20px 0 9%;
+    height: 180px;
+    display: flex;
+    background-color: white;
+}
+.listed img{
+    height: 100%;
+    width: 260px;
+}
+.listed div{
+    padding: 30px;
+    height: 100%;
+}
+.listed .list-content{
+    width: 50%;
+    padding-right: 0;
+}
+.listed .list-content span{
+    margin-right: 20px;
+}
+.listed .list-content h4{
+    margin-top: 40px;
+}
+.listed .list-content i{
+    margin-right: 10px;
+    font-size: 20px ;
+}
+.listed .list-price {
+    padding-left: 0;
+}
+.listed .list-price button{
+    background-color: #BE2C2D;
+    color: white;
+    margin-top: 55px;
+    border-style: none;
+    box-shadow: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+}

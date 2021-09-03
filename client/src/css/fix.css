@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat','Noto Sans TC', sans-serif;
+}
+a{
+    text-decoration: none;
+}
+* header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  background: #BE2C2D;
+  height: 110px;
+  width: 100%;
+}
+* #logo img {
+  height: 4em;
+}
+* #logo{
+  margin-left: 9%;
+}
+* header nav {
+  margin-right: 3%;
+}
+* header nav .dropdown {
+  position: relative;
+  display: inline-block;
+  padding: 45px 0;
+}
+* header nav .dropdown:hover .dropdown-menu {
+  display: block;
+}
+* header nav #toolbar a {
+  padding: 20px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+}
+* header nav a:hover {
+  border-bottom: 3px solid white;
+  border-radius: 3px;
+}
+* header nav .dropdown-menu {
+  display: none;
+  background-color: white;
+  position: absolute;
+  z-index: 1;
+  top: 110px;
+  left: 0;
+  width: 200px;
+  border-radius: 0 0 15px 15px;
+}
+* header nav .dropdown-menu:hover {
+  display: block;
+}
+* header nav #toolbar .dropdown-menu a {
+  display: block;
+  color: #BE2C2D;
+}
+* header nav .dropdown-menu a:hover {
+  border-bottom: 0px;
+}
+* #footer {
+    background-color: #BE2C2D;
+    width: 100%;
+    height: 300px;
+    text-align: center;
+    color: white;
+  }
+* #footer #footerlinks a {
+  font-size: medium;
+  display: inline-block;
+  margin: 50px 30px 20px 20px;
+  color: white;
+}
+#footericons{
+   display: block;
+   padding: 0%;
+}
+* #footer i {
+  margin: 20px 30px;
+  font-size: 30px;
+  color: white;
+}
+* #footer hr {
+  margin: 0 30%;
+}
+* #footer p {
+  margin: 20px 0;
+  font-size: 15px;
+}
+* #footer .fa-map-marker-alt {
+  margin: 0 10px;
+  font-size: 17px;
+}
+* #footer #copyright {
+  margin: 40px 0 0 0;
+  font-size: 10px;
+}
+#navbutton{
+    padding: 20px;
+    background-color: transparent;
+    color: white;
+    font-size: 30px;
+}
+.navdrawer{
+  position: fixed;
+  z-index: 5;
+  top: 80px;
+  left: 0;
+  height: 100vh;
+  background-color:white;
+  width: 100%;
+  color: black;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+}
+.navdrawer #links a{
+  padding: 1em 2em;
+  font-size: large;
+  display: block;
+  color: black;
+  font-weight: 600;
+}
+.navdrawer hr{
+  margin: 0 2em;
+}
+.navdrawer #icons i{
+  font-size: 2em;
+  padding: 0 0.5em;
+  color: black;
+}
+.navdrawer #icons{
+  margin: 20px 4vw;
+}
+.navdrawer #lang{
+  margin: 20px 5vw;
+}
+.navdrawer #lang span{
+  font-size: larger;
+  padding: 10px;
+}
+.drawer-open{
+  transform: translateX(0);
+}
+@media only screen and (max-width: 1025px) {
+  header{
+    position: fixed;
+    z-index: 10;
+  }
+  #toolbar{
+    display: none;
+  }
+  #navbar{
+    display: block;
+  }
+  .overlap{
+    position: relative;
+    top: 80px;
+  }
+  header{
+    height: 80px;
+  }
+  #footer{
+    height: 450px;
+    padding: 15px;
+  }
+  #footer #footerlinks a{
+    display: block;
+    padding: 15px;
+    margin: 0;
+  }
+  #footer i{
+    margin: 20px;
+  }
+}
+@media only screen and (min-width: 1025px) {
+  
+  #navbar{
+    display: none;
+  }
+  #toolbar{
+    display: block;
+  }
+}
