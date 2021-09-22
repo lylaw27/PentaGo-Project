@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Toolbar from './toolbar';
+import Toolbar from './toolbar.jsx';
 
 class CreateProperty extends React.Component{
     constructor(){

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import Header from './header';
-import Footer from './footer';
+import Header from './header.jsx';
+import Footer from './footer.jsx';
 import axios from 'axios';
 
 class FeaturedList extends React.Component{

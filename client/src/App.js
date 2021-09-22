@@ -6,8 +6,8 @@ import './css/contact.css';
 import './css/properties.css';
 import './css/details.css';
 import './css/upload.css';
-import Chi from './chi';
-import Eng from './eng';
+import Chi from './chi.js';
+import Eng from './eng.js';
 class App extends React.Component{
         state = {lang: localStorage.getItem('lang') || 'eng'};
         

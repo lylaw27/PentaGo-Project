@@ -6,15 +6,15 @@ import {
     Switch,
 } from 'react-router-dom';
 
-import Home from "./pages-eng/index";
-import Aboutus from "./pages-eng/aboutus";
-import Contactus from "./pages-eng/contactus";
-import Properties from "./pages-eng/properties";
-import Seminar from "./pages-eng/seminar"
-import Details from "./pages-eng/details"
-import CreateProperty from "./pages-admin/createproperty"
-import EditProperty from "./pages-admin/editproperty"
-import AdminProperty from "./pages-admin/home"
+import Home from "./pages-eng/index.jsx";
+import Aboutus from "./pages-eng/aboutus.jsx";
+import Contactus from "./pages-eng/contactus.jsx";
+import Properties from "./pages-eng/properties.jsx";
+import Seminar from "./pages-eng/seminar.jsx"
+import Details from "./pages-eng/details.jsx"
+import CreateProperty from "./pages-admin/createproperty.jsx"
+import EditProperty from "./pages-admin/editproperty.jsx"
+import AdminProperty from "./pages-admin/home.jsx"
 
 class Eng extends React.Component{
     render(){

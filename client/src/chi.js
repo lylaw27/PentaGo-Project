@@ -8,9 +8,9 @@ import {
 
 import Home from "./pages-chi/index";
 import Aboutus from "./pages-chi/aboutus";
-import Contactus from "./pages-chi/contactus";
-import Properties from "./pages-chi/properties";
-import Seminar from "./pages-chi/seminar"
+import Contactus from "./pages-chi/contactus.jsx";
+import Properties from "./pages-chi/properties.jsx";
+import Seminar from "./pages-chi/seminar.jsx"
 
 class Chi extends React.Component{
     render(){

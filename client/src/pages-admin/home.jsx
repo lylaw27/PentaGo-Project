@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import Toolbar from './toolbar';
+import Toolbar from './toolbar.jsx';
 
 class AdminpropertyListings extends React.Component{
     constructor(){
