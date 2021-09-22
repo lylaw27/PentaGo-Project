@@ -9,7 +9,7 @@ import './css/upload.css';
 import Chi from './chi';
 import Eng from './eng';
 class App extends React.Component{
-        state = {lang: localStorage.getItem('lang') || 'chi'};
+        state = {lang: localStorage.getItem('lang') || 'eng'};
         
         changeLanguage = () =>{ 
             if(this.state.lang==='eng'){

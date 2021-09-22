@@ -12,7 +12,9 @@ import Contactus from "./pages-eng/contactus";
 import Properties from "./pages-eng/properties";
 import Seminar from "./pages-eng/seminar"
 import Details from "./pages-eng/details"
-import UploadPage from "./pages-admin/upload"
+import CreateProperty from "./pages-admin/createproperty"
+import EditProperty from "./pages-admin/editproperty"
+import AdminProperty from "./pages-admin/home"
 
 class Eng extends React.Component{
     render(){
@@ -24,8 +26,11 @@ class Eng extends React.Component{
                     <Route exact path='/contactus' render={(props) => <Contactus chgln={this.props.chgln} {...props}/>}/>
                     <Route exact path='/properties' component={Properties}/>
                     <Route exact path='/seminar' component={Seminar}/>
-                    <Route exact path='/properties/:title' component={Details}/>
-                    <Route exact path='/admin' component={UploadPage}/>
+                    <Route exact path='/properties/:propertyId' render={(props) => <Details prevPath='/properties' {...props}/>}/>
+                    <Route exact path='/admin/upload' component={CreateProperty}/>
+                    <Route exact path='/admin/upload/:propertyId' component={EditProperty}/>
+                    <Route exact path='/admin' component={AdminProperty}/>
+                    <Route exact path='/admin/:propertyId' render={(props) => <Details prevPath='/admin' {...props}/>}/>
                 </Switch>
             </Router>
         )

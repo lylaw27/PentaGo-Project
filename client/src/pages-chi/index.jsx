@@ -15,41 +15,6 @@ class Home extends React.Component{
               <h3>由您角度出發<br id="break"/> 搜羅英倫特式家居</h3>
           </div>
         </div>
-        <section id="searchbox">
-            <form action="/action_page.php">
-                <label htmlFor="City">Location</label>
-                <select id="City" name="City">
-                    <option value="Birmingham">Birmingham</option>
-                    <option value="Bristol">Bristol</option>
-                    <option value="London">London</option>
-                    <option value="Liverpool">Liverpool</option>
-                    <option value="Manchester">Manchester</option>
-                </select>
-
-                <label htmlFor="Price">Price</label>
-                <select id="Price" name="Price">
-                  <option value="£50K">£50K - £300K</option>
-                  <option value="£100K">£300K - £700K</option>
-                  <option value="£1M">£700K - £1M</option>
-                </select>
-
-                <label htmlFor="Bedrooms">Bedrooms</label>
-                <select id="Bedrooms" name="Bedrooms">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3+</option>
-                </select>
-            
-                <label htmlFor="Area">Area</label>
-                <select id="Area" name="Area">
-                  <option value="1">500 ft sq</option>
-                  <option value="2">1000 ft sq</option>
-                  <option value="3">2000 ft sq+</option>
-                </select>
-              
-                <input type="submit" value="Submit"/>
-            </form>
-        </section>
       </div>
       <section id="featured">
         <h1>精選物業</h1>

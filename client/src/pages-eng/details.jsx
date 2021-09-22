@@ -1,29 +1,54 @@
 import React from 'react';
 import Header from './header';
 import Footer from './footer';
+import axios from 'axios';
 
 class Details extends React.Component {
     constructor(){
         super();
+        this.state = {
+            _id: '',
+            imagefile: '',
+            title: '',
+            address: '',
+            bedroom: '',
+            bathroom: '',
+            area: '',
+            feature:[],
+            price: '',
+            description:''
+        };
+        
     }
-
+    
+    getPropertyDetail = () => {
+        let propertyId = this.props.match.params.propertyId
+        axios.get(`/api/propertyListings/${propertyId}`)
+        .then((res) => {
+            this.setState(res.data)
+        })
+    }
+    componentDidMount(){
+        this.getPropertyDetail();
+        window.scrollTo(0, 0);
+    }
     render(){
-    const propertyDetail = this.props.location.state;
     return (
+        
         <div>
             <Header />
            <div className="overlap">
                 <section id="back">
-                    <a href="/properties"><i className="fas fa-arrow-left"></i> Look at other properties</a>
+                    <a href={this.props.prevPath}><i className="fas fa-arrow-left"></i> Look at other properties</a>
                 </section>
                 <section id="detail-layout">
                     <div id="detail-img" className="detail-content">
-                        <img alt="" src={propertyDetail.imagepath}/>
+                        <img alt="" src={this.state.imagefile}/>
                     </div>
                     <div id="detail-title">
-                        <h1>{propertyDetail.title}</h1>
-                        <h2>{propertyDetail.address}</h2>
-                        <h3>£{propertyDetail.price}</h3>
+                        <h1>{this.state.title}</h1>
+                        <h2>{this.state.address}</h2>
+                        <h3>£{this.state.price}</h3>
                         <div id="agent-contacts">
                             <h1>Contact Our Agent</h1>
                             <div>
@@ -35,19 +60,19 @@ class Details extends React.Component {
                     </div>
                     <div id="detail-data" className="detail-content">
                         <h1>Overview</h1>
-                        <span><i className="fas fa-bed"></i>{propertyDetail.bedroom} bedroom(s)</span>
-                        <span><i className="fas fa-shower"></i>{propertyDetail.bathroom} bathroom(s)</span>
-                        <span><i className="fas fa-expand-arrows-alt"></i>{propertyDetail.area} sq. ft</span>
+                        <span><i className="fas fa-bed"></i>{this.state.bedroom} bedroom(s)</span>
+                        <span><i className="fas fa-shower"></i>{this.state.bathroom} bathroom(s)</span>
+                        <span><i className="fas fa-expand-arrows-alt"></i>{this.state.area} sq. ft</span>
                     </div>
                     <div id="detail-features" className="detail-content">
                         <h1>Features</h1>
                         <ul>
-                            {propertyDetail.features.map((features,i) => <li key={i}><i className="fas fa-check"></i>{features}</li>)}
+                            {this.state.feature.map((feature,i) => <li key={i}><i className="fas fa-check"></i>{feature}</li>)}
                         </ul>
                     </div>
                     <div id="detail-description" className="detail-content">
                         <h1>Description</h1>
-                        <p>{propertyDetail.description}</p>
+                        <p>{this.state.description}</p>
                     </div>
                 </section>
                 <Footer />

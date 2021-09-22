@@ -61,7 +61,6 @@
     margin-left: 9%;
     padding-top: 30px;
 }
-
 .listed{
     max-width: 1000px;
     margin: 30px 20px 0 9%;
@@ -69,8 +68,10 @@
     display: flex;
     background-color: white;
 }
+.listed:hover {
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+  }
 .listed img{
-    height: 100%;
     width: 260px;
 }
 .listed div{
@@ -91,15 +92,38 @@
     margin-right: 10px;
     font-size: 20px ;
 }
-.listed .list-price {
-    padding-left: 0;
+.listed #adminlist-price{
+    padding: 50px 0;
 }
-.listed .list-price button{
+.listed .list-price .buttonLink{
     background-color: #BE2C2D;
     color: white;
-    margin-top: 55px;
     border-style: none;
     box-shadow: none;
     padding: 10px 15px;
     border-radius: 5px;
+    margin: 0 10px 10px 0;
+    display: inline-block;
+}
+.listed .list-price #previewproperty{
+    margin-top: 45px;
+}
+#addProperty{
+    border-radius: 20px;
+    border: 2px dashed #BE2C2D;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+#addProperty h1{
+    padding: 0;
+    margin: 0;
+    color: black;
+}
+#addProperty h1 i{
+    padding-right: 20px;
+}
+#loading{
+    text-align: center;
+    padding: 50px 0;
 }

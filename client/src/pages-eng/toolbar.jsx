@@ -4,9 +4,9 @@ class Toolbar extends React.Component{
     render(){
         return(
             <div id="toolbar">
-                <a href="/">主頁</a>
+                <a href="/">Home</a>
                 <div className="dropdown">
-                    <a>尋找物業</a>
+                    <a href="/properties">Properties</a>
                     <div className="dropdown-menu">
                         <a href="/properties">Pre-owned Flats</a>
                         <a href="/properties">Pre-owned Houses</a>
@@ -15,11 +15,11 @@ class Toolbar extends React.Component{
                         <a href="/properties">HMO</a>
                     </div>
                 </div>
-                <a href="https://pentago-property.com/blog">網誌</a>
-                <a href="/seminar">活動</a>
-                <a href="/aboutus">關於我們</a>
-                <a href="/contactus">聯絡我們</a>
-                <a onClick = {this.props.chgln}>ENG</a>
+                <a href="https://pentago-property.com/blog">Blogs</a>
+                <a href="/seminar">Events</a>
+                <a href="/aboutus">About Us</a>
+                <a href="/contactus">Contact Us</a>
+                <a onClick = {this.props.chgln}>繁中</a>
             </div>
         )
     }

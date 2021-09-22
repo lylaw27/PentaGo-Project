@@ -1,6 +1,53 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import Header from './header';
 import Footer from './footer';
+import axios from 'axios';
+
+class FeaturedList extends React.Component{
+  constructor(){
+    super();
+    this.state = {
+        propertyList:[
+        {
+            _id: '', 
+            imagefile: '',
+            title: '', 
+            address: '',
+        }
+        ]
+    }
+  }
+  getPropertyList(){
+    axios.get('/api/propertyListings')
+        .then((res) => {
+          let propertyList = res.data
+          this.setState({propertyList})
+          console.log('Data has been received!');
+        })
+        .catch(()=>{
+            console.log('Error getting data!')
+        })
+  }
+  componentDidMount(){
+      this.getPropertyList();
+  }
+  render(){
+    return(
+      this.state.propertyList.map((property,i) =>
+            <Link to={`/properties/${property._id}`} className="col" key={i}>
+                <img alt="" src={property.imagefile}/>
+                <div className="description">
+                    <h3>{property.title}</h3>
+                    <p>{property.address}</p>
+                </div>
+            </Link>
+    )
+    )
+  }
+}
+
+
 
 class Home extends React.Component{
   render(){
@@ -15,74 +62,12 @@ class Home extends React.Component{
               <p>With active listings all around in the UK. PentaGo provides the best options like your dream home.</p>
           </div>
         </div>
-        <section id="searchbox">
-            <form action="/action_page.php">
-                <label htmlFor="City">Location</label>
-                <select id="City" name="City">
-                    <option value="Birmingham">Birmingham</option>
-                    <option value="Bristol">Bristol</option>
-                    <option value="London">London</option>
-                    <option value="Liverpool">Liverpool</option>
-                    <option value="Manchester">Manchester</option>
-                </select>
-
-                <label htmlFor="Price">Price</label>
-                <select id="Price" name="Price">
-                  <option value="£50K">£50K - £300K</option>
-                  <option value="£100K">£300K - £700K</option>
-                  <option value="£1M">£700K - £1M</option>
-                </select>
-
-                <label htmlFor="Bedrooms">Bedrooms</label>
-                <select id="Bedrooms" name="Bedrooms">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3+</option>
-                </select>
-            
-                <label htmlFor="Area">Area</label>
-                <select id="Area" name="Area">
-                  <option value="1">500 ft sq</option>
-                  <option value="2">1000 ft sq</option>
-                  <option value="3">2000 ft sq+</option>
-                </select>
-              
-                <input type="submit" value="Submit"/>
-            </form>
-        </section>
       </div>
       <section id="featured">
         <h1>Featured Properties</h1>
-          <div id="newproperty">
-              <div className="col">
-                  <img alt="" src="/listimg/listimg1.jpg"/>
-                  <div className="description">
-                      <h3>3 bed end terrace house</h3>
-                      <p>Knott Oaks, Witney, Oxfordshire</p>
-                  </div>
-              </div>
-              <div className="col">
-                  <img alt="" src="/listimg/listimg2.jpg"/>
-                  <div className="description">
-                      <h3>2 bed semi-detached house</h3>
-                      <p>Wilkinson Avenue, Paddington</p>
-                  </div>
-              </div>
-              <div className="col">
-                  <img alt="" src="/listimg/listimg3.jpg"/>
-                  <div className="description">
-                      <h3>3 bed detached house</h3>
-                      <p>Marrow Drive, Liverpool</p>
-                  </div>
-              </div>
-              <div className="col">
-                  <img alt="" src="/listimg/listimg4.jpg"/>
-                  <div className="description">
-                      <h3>2-bed Semi-detached House</h3>
-                      <p>Bosworth Drive, Birmingham</p>
-                  </div>
-            </div>
-          </div>
+        <div id="newproperty">
+        <FeaturedList/>
+        </div>
       </section>
       <section id="gridsec">
         <img id="img1" alt="" src={require('../images/grid1.jpg')}/>

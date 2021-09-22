@@ -1,6 +1,6 @@
 import React from 'react';
-import Toolbar from './toolbar.js';
-import Navbar from './navbar.js';
+import Toolbar from './toolbar';
+import Navbar from './navbar';
 class Header extends React.Component{
 render(){
   return (

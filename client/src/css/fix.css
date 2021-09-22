@@ -18,7 +18,7 @@ a{
   height: 110px;
   width: 100%;
 }
-* #logo img {
+* header img {
   height: 4em;
 }
 * #logo{
@@ -35,7 +35,7 @@ a{
 * header nav .dropdown:hover .dropdown-menu {
   display: block;
 }
-* header nav #toolbar a {
+* header #toolbar a {
   padding: 20px;
   color: white;
   font-size: 15px;
@@ -56,10 +56,11 @@ a{
   border-radius: 0 0 15px 15px;
 }
 * header nav .dropdown-menu:hover {
-  display: block;
+  display: block; 
 }
+/* temp dropdown display none */
 * header nav #toolbar .dropdown-menu a {
-  display: block;
+  display: none;
   color: #BE2C2D;
 }
 * header nav .dropdown-menu a:hover {
@@ -148,6 +149,32 @@ a{
 .drawer-open{
   transform: translateX(0);
 }
+
+/* ADMIN */
+#adminHeader{
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  padding: 0 9%;
+}
+#signOut{
+color: white;
+font-size: 17px;
+font-weight: 600;
+grid-column: 1/2;
+justify-self: start;
+padding: 20px;
+}
+#adminLogo{
+  margin: 0;
+  grid-column: 2/3;
+  justify-self: center;
+}
+#adminHeader #toolbar{
+  grid-column: 3/4;
+  justify-self: end;
+}
+
+/* PHONE */
 @media only screen and (max-width: 1025px) {
   header{
     position: fixed;

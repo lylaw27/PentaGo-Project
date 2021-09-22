@@ -1,10 +1,9 @@
 import React from 'react';
-import Header from './header';
-import Footer from './footer';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import Toolbar from './toolbar';
 
-class Templisting extends React.Component{
+class AdminpropertyListings extends React.Component{
     constructor(){
         super();
         this.state = {
@@ -24,7 +23,7 @@ class Templisting extends React.Component{
             isLoading: true
         }
     }
-    getPropertyList(){
+    getPropertyList = () => {
         axios.get('/api/propertyListings')
             .then((res) => {
                 const propertyList = res.data
@@ -34,6 +33,22 @@ class Templisting extends React.Component{
             .catch(()=>{
                 console.log('Error getting data!')
             })
+    }
+    deleteProperty = (propertyId) =>{
+        let confirmDelete = window.confirm('Are you sure you want to delete this property?')
+        if(confirmDelete){
+            axios.delete(`/api/propertyListings/${propertyId}`)
+            .then(() => {
+                alert('Data has been deleted!')
+                this.getPropertyList();
+            })
+            .catch(()=>{
+                console.log('Error deleting data!')
+            }) 
+        }
+        else{
+            window.close();
+        }
     }
     componentDidMount(){
         this.getPropertyList();
@@ -49,24 +64,30 @@ class Templisting extends React.Component{
         <div className="list-content">
             <h2>{property.title}</h2>
             <p>{property.address}</p>
+            <p>£{property.price}</p>
             <h4>
                 <span><i className="fas fa-bed"></i>{property.bedroom}</span>
                 <span><i className="fas fa-shower"></i>{property.bathroom}</span>
                 <span><i className="fas fa-expand-arrows-alt"></i>{property.area} sqft</span>
             </h4>
         </div>
-        <div className="list-price">
-            <h2>£{property.price}</h2>
-            <Link to={`/properties/${property._id}`} id='previewproperty' className='buttonLink'>Have a Look <i className="fas fa-arrow-right"></i></Link>
+        <div className="list-price" id="adminlist-price">
+            <Link to={`/admin/upload/${property._id}`} className='buttonLink'>
+                Edit <i className="fas fa-edit"></i>
+            </Link>
+                <span onClick={() => {this.deleteProperty(property._id)}} className='buttonLink'>Delete <i className="fas fa-trash"></i></span>
+            <Link to={`/admin/${property._id}`} className='buttonLink'>
+                Preview <i className="fas fa-arrow-right"></i>
+            </Link>
         </div>
     </div>
 ))}}
 
 
-function Properties() {
+function AdminProperty() {
     return (
         <div>
-            <Header />
+            <Toolbar pathname='signOut'/>
             <div className="overlap">
                 <div id="properties">
                     <section id="filter">
@@ -121,14 +142,18 @@ function Properties() {
                     </section>
                     <section id="listings">
                         <h1>Properties for Sale</h1>
-                        <Templisting/>
+                        <Link to='/admin/upload' className="listed" id='addProperty'>
+                    
+                            <h1><i className="fas fa-upload"></i>Add New Property</h1>
+                        
+                        </Link>
+                        <AdminpropertyListings/>
                     </section>
                 </div> 
-                <Footer />
             </div>
            
         </div>
     );
 }
 
-export default Properties;
+export default AdminProperty;
