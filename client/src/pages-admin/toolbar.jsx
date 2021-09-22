@@ -16,7 +16,7 @@ class Toolbar extends React.Component{
 
 class PrevPage extends React.Component{
     render(){
-    if(this.props.pathname !='signOut'){
+    if(this.props.pathname !=='signOut'){
         return(
             <a href="/admin" id="signOut">
                 <i className="fas fa-arrow-left"></i> Back To Property List
