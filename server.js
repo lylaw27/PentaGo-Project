@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const propertyListings = require('./api/PropertyListings.js');
+const propertyListings = require('./routes/api/propertyListings.js');
 const mongoose = require('mongoose');
 const MONGO_URI = "mongodb+srv://lylaw:lylaw@pentago-db.3rvcu.mongodb.net/Properties?retryWrites=true&w=majority";
 
@@ -15,7 +15,10 @@ mongoose.connect(MONGO_URI,{ useNewUrlParser: true, useUnifiedTopology: true })
 app.use('/api',propertyListings);
 
 if (process.env.NODE_ENV === 'production'){
-    app.use(express.static('client/build'));
+    app.use(express.static(path.join(__dirname, 'client/build')));
+    app.get('/*', function(req,res) {
+		res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+    });
 }
 
 const port = process.env.PORT || 5000;
