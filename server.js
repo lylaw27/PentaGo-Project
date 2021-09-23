@@ -15,10 +15,12 @@ mongoose.connect(MONGO_URI,{ useNewUrlParser: true, useUnifiedTopology: true })
 app.use('/api',propertyListings);
 
 if (process.env.NODE_ENV === 'production'){
-    app.use(express.static(path.join(__dirname, '../client/build')));
-    app.get('/*', function(req,res) {
-		res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-    });
+    app.get("*", (req, res) => {
+        let url = path.join(__dirname, '../client/build', 'index.html');
+        if (!url.startsWith('/app/')) // since we're on local windows
+          url = url.substring(1);
+        res.sendFile(url);
+      });
 }
 
 const port = process.env.PORT || 5000;
