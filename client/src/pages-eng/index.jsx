@@ -59,7 +59,7 @@ class Home extends React.Component{
         <div className="filter">
           <div id="title">
               <h1 id="eng">PentaGO!</h1><h2>Your No.1 UK <br/>Property Navigator</h2>
-              <p>With active listings all around in the UK. PentaGo provides the best options like your dream home.</p>
+              <p>With active listings all around the UK. PentaGo! provides the best options for your dream home.</p>
           </div>
         </div>
       </div>
@@ -80,21 +80,21 @@ class Home extends React.Component{
         </div>
         <div id="gridrow">
             <h1>SIMPLY PENTAGO!</h1>
-            <p>Plan your future with PentaGo! PentaGo offers myriad kinds of properties ranging from cottages to mansions. Just simply search on PentaGo and you are one step closer to buying your dream house!</p>
+            <p>Plan your future with PentaGo! PentaGo! offers a myriad kinds of properties ranging from cottages to mansions. Just simply search on PentaGo and you are one step closer to buying your dream house!</p>
         </div>
       </section>
       <section id="mobilegrid">
         <div className="filter">
           <br/><h1>Plan your future with PentaGo!</h1>
           <br/>
-          <p> PentaGo offers myriad kinds of properties ranging from cottages to mansions.</p>
+          <p> PentaGo! offers a myriad kinds of properties ranging from cottages to mansions.</p>
           <br/>
-          <p>Just simply search on PentaGo and you are one step closer to buying your dream house!</p>
+          <p>Just simply search on PentaGo! and you are one step closer to buying your dream house!</p>
         </div>
       </section>
       <section id="rowsec">
-        <h1>How To Invest In UK Properites?</h1>
-        <p>We offer seminars and one-on-one consultations to new investors from our professional analysts.</p>
+        <h1>How To Invest In UK Properties?</h1>
+        <p>Our professional analysts offer seminars and one-on-one consultations to new investors like you.</p>
         <br/>
         <button>Sign Up</button>
     </section>

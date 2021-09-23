@@ -11,14 +11,14 @@ class Aboutus extends React.Component{
                 <section id="top">
                     <div>
                         <h1>About Us</h1>
-                        <p>We cover all the procedures needed from property analysis to transactions. <br className="break"/>PentaGo ensures our customers not to worry a thing.</p>
+                        <p>We cover all the procedures needed when purchasing a property. If you need help with property search, legal support or reconstruction,<br className="break"/><br className="break"/>PentaGO has it. All at one place.</p>
                     </div>
                 </section>
                 <section className="service1">
                     <img alt="" src={require('../images/about2.jpg')}/>
                     <div>    
                         <h1>Our Services</h1>
-                        <p><p class="hide">PentaGo! is your most powerful UK property analyst. We hired professional teams based in the UK which provide assistance in searching for your desired houses in the UK. Our current five investment hotspots include London, Reading, Birmingham, Manchester and Leeds.</p> We provide one-stop services including property search, sale and purchase negotiation, design and decoration, value-added reconstruction, building inspection report, legal support, mortgage consultant and lease management, etc.</p>
+                        <p><p class="hide">We have professional teams based in the UK which provide assistance in searching for your desired houses in the UK. Our current five investment hotspots include London, Reading, Birmingham, Manchester and Leeds.</p><br className="break"/>Compare hundreds of properties at once. PentaGo! Your reliable property manager.</p>
                     </div>
                 </section>
                 <section className="service2">
