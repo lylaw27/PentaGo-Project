@@ -69,7 +69,7 @@ class AdminpropertyListings extends React.Component{
                 <h2>{property.title}</h2>
                 <p>{property.address}</p>
                 <p>£{property.price}</p>
-                <h4>
+                <h4 id='adminlist-room'>
                     <span><i className="fas fa-bed"></i>{property.bedroom}</span>
                     <span><i className="fas fa-shower"></i>{property.bathroom}</span>
                     <span><i className="fas fa-expand-arrows-alt"></i>{property.area} sqft</span>
