@@ -58,30 +58,36 @@ class AdminpropertyListings extends React.Component{
         return <div id='loading'><h1>Loading...</h1></div>
     }
     return(
-    this.state.propertyList.map((property,i) =>
-    <div className="listed" key={i}>
-        <img alt="" src={property.imagefile}/>
-        <div className="list-content">
-            <h2>{property.title}</h2>
-            <p>{property.address}</p>
-            <p>£{property.price}</p>
-            <h4>
-                <span><i className="fas fa-bed"></i>{property.bedroom}</span>
-                <span><i className="fas fa-shower"></i>{property.bathroom}</span>
-                <span><i className="fas fa-expand-arrows-alt"></i>{property.area} sqft</span>
-            </h4>
-        </div>
-        <div className="list-price" id="adminlist-price">
-            <Link to={`/admin/upload/${property._id}`} className='buttonLink'>
-                Edit <i className="fas fa-edit"></i>
-            </Link>
-                <span onClick={() => {this.deleteProperty(property._id)}} className='buttonLink'>Delete <i className="fas fa-trash"></i></span>
-            <Link to={`/admin/${property._id}`} className='buttonLink'>
-                Preview <i className="fas fa-arrow-right"></i>
-            </Link>
-        </div>
+    <div>
+        <Link to='/admin/upload' className="listed" id='addProperty'>
+            <h1><i className="fas fa-upload"></i>Add New Property</h1>
+        </Link>
+        {this.state.propertyList.map((property,i) =>
+        <div className="listed" key={i}>
+            <img alt="" src={property.imagefile}/>
+            <div className="list-content">
+                <h2>{property.title}</h2>
+                <p>{property.address}</p>
+                <p>£{property.price}</p>
+                <h4>
+                    <span><i className="fas fa-bed"></i>{property.bedroom}</span>
+                    <span><i className="fas fa-shower"></i>{property.bathroom}</span>
+                    <span><i className="fas fa-expand-arrows-alt"></i>{property.area} sqft</span>
+                </h4>
+            </div>
+            <div className="list-price" id="adminlist-price">
+                <Link to={`/admin/upload/${property._id}`} className='buttonLink'>
+                    Edit <i className="fas fa-edit"></i>
+                </Link>
+                    <span onClick={() => {this.deleteProperty(property._id)}} className='buttonLink'>Delete <i className="fas fa-trash"></i></span>
+                <Link to={`/admin/${property._id}`} className='buttonLink'>
+                    Preview <i className="fas fa-arrow-right"></i>
+                </Link>
+            </div>
+        </div>)}
     </div>
-))}}
+)
+}}
 
 
 function AdminProperty() {
@@ -142,11 +148,6 @@ function AdminProperty() {
                     </section>
                     <section id="listings">
                         <h1>Properties for Sale</h1>
-                        <Link to='/admin/upload' className="listed" id='addProperty'>
-                    
-                            <h1><i className="fas fa-upload"></i>Add New Property</h1>
-                        
-                        </Link>
                         <AdminpropertyListings/>
                     </section>
                 </div> 
