@@ -34,9 +34,8 @@ class Details extends React.Component {
     }
     render(){
     return (
-        
         <div>
-            <Header />
+            <Header/>
            <div className="overlap">
                 <section id="back">
                     <a href={this.props.prevPath}><i className="fas fa-arrow-left"></i> Look at other properties</a>

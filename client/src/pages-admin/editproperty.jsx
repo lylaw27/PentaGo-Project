@@ -70,7 +70,7 @@ class EditProperty extends React.Component{
             area: this.state.area,
             bedroom: this.state.bedroom,
             bathroom: this.state.bathroom,
-            desciption: this.state.description,
+            description: this.state.description,
             feature: this.state.feature,
         };
         this.setState({submitDisabled: true});
