@@ -59,7 +59,7 @@ class Home extends React.Component{
         <div className="filter">
           <div id="title">
               <h1 id="eng">PentaGO!</h1><h2>Your No.1 UK <br/>Property Navigator</h2>
-              <p>With active listings all around the UK. PentaGo! provides the best options for your dream home.</p>
+              <p>With active listings all around the UK, <br className="break"/>PentaGo! provides the best options<br className="break"/> tailor-made for your dream home.</p>
           </div>
         </div>
       </div>

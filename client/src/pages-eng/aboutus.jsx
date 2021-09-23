@@ -18,15 +18,15 @@ class Aboutus extends React.Component{
                     <img alt="" src={require('../images/about2.jpg')}/>
                     <div>    
                         <h1>Our Services</h1>
-                        <p><p class="hide">We have professional teams based in the UK which provide assistance in searching for your desired houses in the UK. Our current five investment hotspots include London, Reading, Birmingham, Manchester and Leeds.</p><br className="break"/>Compare hundreds of properties at once. PentaGo! Your reliable property manager.</p>
+                        <p><p class="hide">We have professional teams based in the UK which provide assistance in searching for your dream houses in the UK. Our current five investment hotspots include London, Reading, Birmingham, Manchester and Leeds.</p><br className="break"/>Compare hundreds of properties at once.<br className="break"/> PentaGo! Your reliable property manager.</p>
                     </div>
                 </section>
                 <section className="service2">
                     <div className="content">    
                         <h1>Evaluation</h1>
-                        <div><i class="fas fa-home"></i><p>Track for BMV (Below Market Value) and high quailty real estates</p></div>
+                        <div><i class="fas fa-home"></i><p>Track for BMV (Below Market Value) and high quality real estates</p></div>
                         <div><i class="fas fa-pound-sign"></i><p>Negotiate with local agencies for the best prices</p></div>
-                        <div><i class="far fa-newspaper"></i><p>Offer building inpections and safety reports</p></div>
+                        <div><i class="far fa-newspaper"></i><p>Offer building inspections and safety reports</p></div>
                     </div>
                     <img alt="" src={require('../images/about3.jpg')}/>
                 </section>
@@ -34,8 +34,8 @@ class Aboutus extends React.Component{
                     <img alt="" src={require('../images/about4.jpg')}/>
                     <div className="content">
                         <h1>Maintenance</h1>
-                        <div><i className="fas fa-ruler-combined"></i><p>Design your home according to your choices</p></div>
-                        <div><i className="fas fa-tools"></i><p>Expand and reconstruct your asset to raise your its value</p></div>
+                        <div><i className="fas fa-ruler-combined"></i><p>Design your home according to your preferences</p></div>
+                        <div><i className="fas fa-tools"></i><p>Expand and reconstruct your asset</p></div>
                         <div><i className="fas fa-chart-line"></i><p>Negotiate with tenants to pursue long-term stable income</p></div>
                     </div>
                 </section>

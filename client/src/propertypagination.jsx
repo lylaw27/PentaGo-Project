@@ -15,6 +15,18 @@ class PropertyPagination extends React.Component{
             this.setState({maxPage: maxpage})
         })
     }
+    componentDidMount(){
+        getPropertyCount();
+    }
+    render(){
+    return(
+        <div id='pageBar'>
+            <div>
+                
+            </div>
+        </div>
+    )    
+    }
 }
 
 export default PropertyPagination;
