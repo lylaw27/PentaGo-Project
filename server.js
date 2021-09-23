@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const propertyListings = require('./api/propertyListings.js');
+const propertyListings = require('./api/PropertyListings.js');
 const mongoose = require('mongoose');
 const MONGO_URI = "mongodb+srv://lylaw:lylaw@pentago-db.3rvcu.mongodb.net/Properties?retryWrites=true&w=majority";
 
