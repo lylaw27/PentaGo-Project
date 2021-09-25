@@ -37,7 +37,7 @@ router.post('/propertyListings',upload.single('propertyImage'),(req,res) => {
 )
 
 router.get('/propertyListings',(req,res) =>{
-    Listings.find({}, function(err, data){
+    Listings.find({}, (err, data)=>{
         res.json(data);
     });
 }
@@ -99,5 +99,11 @@ router.put('/propertyListings/:propertyId',(req,res) => {
     })
 })
 
+router.get('/propertyListingsCount',(req,res) =>{
+    Listings.count({}, (err, data)=>{
+        res.send(data.toString())
+    });
+}
+)
 
 module.exports = router;

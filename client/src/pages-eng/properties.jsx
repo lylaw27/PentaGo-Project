@@ -3,6 +3,7 @@ import Header from './header.jsx';
 import Footer from './footer.jsx';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import PropertyPagination from '../propertypagination.jsx'
 
 class Templisting extends React.Component{
     constructor(){
@@ -43,27 +44,30 @@ class Templisting extends React.Component{
         return <div id='loading'><h1>Loading...</h1></div>
     }
     return(
-    this.state.propertyList.map((property,i) =>
-    <div className="listed" key={i}>
-        <img alt="" src={property.imagefile}/>
-        <div className="list-content">
-            <h2>{property.title}</h2>
-            <p>{property.address}</p>
-            <h4>
-                <span><i className="fas fa-bed"></i>{property.bedroom}</span>
-                <span><i className="fas fa-shower"></i>{property.bathroom}</span>
-                <span><i className="fas fa-expand-arrows-alt"></i>{property.area} sqft</span>
-            </h4>
-        </div>
-        <div className="list-price">
-            <h2>£{property.price}</h2>
-            <Link to={`/properties/${property._id}`} id='previewproperty' className='buttonLink'>Have a Look <i className="fas fa-arrow-right"></i></Link>
-        </div>
+    <div>
+        {this.state.propertyList.map((property,i) =>
+        <div className="listed" key={i}>
+            <img alt="" src={property.imagefile}/>
+            <div className="list-content">
+                <h2>{property.title}</h2>
+                <p>{property.address}</p>
+                <h4>
+                    <span><i className="fas fa-bed"></i>{property.bedroom}</span>
+                    <span><i className="fas fa-shower"></i>{property.bathroom}</span>
+                    <span><i className="fas fa-expand-arrows-alt"></i>{property.area} sqft</span>
+                </h4>
+            </div>
+            <div className="list-price">
+                <h2>£{property.price}</h2>
+                <Link to={`/properties/${property._id}`} id='previewproperty' className='buttonLink'>Have a Look <i className="fas fa-arrow-right"></i></Link>
+            </div>
+        </div>)}
+        <PropertyPagination/> 
     </div>
-))}}
+    )}}
 
 
-function Properties() {
+const Properties= () => {
     return (
         <div>
             <Header />
@@ -122,8 +126,11 @@ function Properties() {
                     <section id="listings">
                         <h1>Properties for Sale</h1>
                         <Templisting/>
+                        
                     </section>
-                </div> 
+                    
+                </div>
+                
                 <Footer />
             </div>
            

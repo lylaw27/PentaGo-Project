@@ -24,7 +24,7 @@ class Eng extends React.Component{
                     <Route exact path='/' render={(props) => <Home chgln={this.props.chgln} {...props} />}/>
                     <Route exact path='/aboutus' render={(props) => <Aboutus chgln={this.props.chgln} {...props}/>}/>
                     <Route exact path='/contactus' render={(props) => <Contactus chgln={this.props.chgln} {...props}/>}/>
-                    <Route exact path='/properties' component={Properties}/>
+                    <Route exact path='/properties' render={(props) => <Properties {...props}/>}/>
                     <Route exact path='/seminar' component={Seminar}/>
                     <Route exact path='/properties/:propertyId' render={(props) => <Details prevPath='/properties' {...props}/>}/>
                     <Route exact path='/admin/upload' component={CreateProperty}/>

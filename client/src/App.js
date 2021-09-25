@@ -6,6 +6,7 @@ import './css/contact.css';
 import './css/properties.css';
 import './css/details.css';
 import './css/upload.css';
+import './css/pagination.css'
 import Chi from './chi.js';
 import Eng from './eng.js';
 class App extends React.Component{
