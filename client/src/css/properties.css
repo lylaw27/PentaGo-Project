@@ -14,7 +14,6 @@
     position: relative;
     margin: 0 1%;
 }
-
 #filter select{
     border-radius: 5px;
     padding: 13px 0 13px 45px;
@@ -34,14 +33,12 @@
     font-size: 20px;
     pointer-events: none;
 }
-
 #filter .fa-chevron-down{
     top: 15px;
     margin: 0 30px 0 0;
     left: 85%;
     right: 0px;
 }
-
 #filter input[type=submit] {
     background-color: #BE2C2D;
     border-radius: 10px;
@@ -63,15 +60,16 @@
 .listed{
     max-width: 1000px;
     margin: 30px 20px 0 9%;
-    height: 180px;
+    height: 250px;
     display: flex;
     background-color: white;
+    color: black;
 }
 .listed:hover {
     box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
   }
 .listed img{
-    width: 260px;
+    width: 370px;
 }
 .listed div{
     padding: 30px;

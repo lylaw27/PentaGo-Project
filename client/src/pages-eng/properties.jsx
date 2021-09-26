@@ -1,52 +1,51 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import Header from './header.jsx';
 import Footer from './footer.jsx';
-import {Link} from 'react-router-dom';
+import {Link, useLocation,useHistory} from 'react-router-dom';
 import axios from 'axios';
 import PropertyPagination from '../propertypagination.jsx'
 
-class Templisting extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            propertyList:[
-            {
-                _id: '', 
-                imagefile: '',
-                title: '', 
-                address: '',
-                bedroom: '', 
-                bathroom: '', 
-                area: '', 
-                feature:[],
-                price: '',
-            }
-            ],
-            isLoading: true
+const Templisting = () => {
+    const [propertyList,setPropertyList] = useState([
+        {
+            _id: '', 
+            imagefile: '',
+            title: '', 
+            address: '',
+            bedroom: '', 
+            bathroom: '', 
+            area: '', 
+            feature:[],
+            price: '',
         }
+        ]);
+    const [loading,setLoading] = useState(true);
+    let history = useHistory();
+    let query = useLocation().search
+    const getPropertyList =() =>{
+        axios.get('/api/propertyListings' + query)
+        .then((res) => {
+            if(res.data==='notfound'){
+                history.push('/404')
+                return function cleanup(){}
+            }
+            setPropertyList(res.data);
+            setLoading(false);
+        })
+        .catch(()=>{
+            console.log('Error getting data!')
+        })
     }
-    getPropertyList(){
-        axios.get('/api/propertyListings')
-            .then((res) => {
-                const propertyList = res.data
-                this.setState({propertyList,isLoading:false})
-                console.log('Data has been received!');
-            })
-            .catch(()=>{
-                console.log('Error getting data!')
-            })
-    }
-    componentDidMount(){
-        this.getPropertyList();
-    }
-    render(){
-    if(this.state.isLoading){
+    useEffect(()=>{
+        getPropertyList();
+    },[query])
+    if(loading){
         return <div id='loading'><h1>Loading...</h1></div>
     }
     return(
     <div>
-        {this.state.propertyList.map((property,i) =>
-        <div className="listed" key={i}>
+        {propertyList.map((property,i) =>
+        <Link to={`/properties/${property._id}`} className="listed" key={i}>
             <img alt="" src={property.imagefile}/>
             <div className="list-content">
                 <h2>{property.title}</h2>
@@ -59,12 +58,11 @@ class Templisting extends React.Component{
             </div>
             <div className="list-price">
                 <h2>£{property.price}</h2>
-                <Link to={`/properties/${property._id}`} id='previewproperty' className='buttonLink'>Have a Look <i className="fas fa-arrow-right"></i></Link>
             </div>
-        </div>)}
-        <PropertyPagination/> 
+        </Link>)}
+        <PropertyPagination/>
     </div>
-    )}}
+    )}
 
 
 const Properties= () => {

@@ -4,6 +4,7 @@ import {
     BrowserRouter as Router,
     Route,
     Switch,
+    Redirect
 } from 'react-router-dom';
 
 import Home from "./pages-eng/index.jsx";
@@ -15,22 +16,28 @@ import Details from "./pages-eng/details.jsx"
 import CreateProperty from "./pages-admin/createproperty.jsx"
 import EditProperty from "./pages-admin/editproperty.jsx"
 import AdminProperty from "./pages-admin/home.jsx"
+import PageNotFound from "./pagenotfound"
 
 class Eng extends React.Component{
     render(){
         return(
             <Router>
                 <Switch>
+                    
                     <Route exact path='/' render={(props) => <Home chgln={this.props.chgln} {...props} />}/>
                     <Route exact path='/aboutus' render={(props) => <Aboutus chgln={this.props.chgln} {...props}/>}/>
                     <Route exact path='/contactus' render={(props) => <Contactus chgln={this.props.chgln} {...props}/>}/>
-                    <Route exact path='/properties' render={(props) => <Properties {...props}/>}/>
+                    <Route exact path='/properties' render={() => <Properties/>}/>
                     <Route exact path='/seminar' component={Seminar}/>
                     <Route exact path='/properties/:propertyId' render={(props) => <Details prevPath='/properties' {...props}/>}/>
                     <Route exact path='/admin/upload' component={CreateProperty}/>
                     <Route exact path='/admin/upload/:propertyId' component={EditProperty}/>
                     <Route exact path='/admin' component={AdminProperty}/>
                     <Route exact path='/admin/:propertyId' render={(props) => <Details prevPath='/admin' {...props}/>}/>
+                    <Route exact path='/admin' component={AdminProperty}/>
+                    <Route path='/404' component={PageNotFound}/>
+                    <Redirect from='/properties' to='/properties?page=1'/>
+                    <Redirect from='*' to='/404' />
                 </Switch>
             </Router>
         )

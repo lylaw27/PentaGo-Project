@@ -1,40 +1,41 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import axios from 'axios';
+import React,{useState,useEffect} from 'react';
 import Toolbar from './toolbar.jsx';
+import {Link, useLocation,useHistory} from 'react-router-dom';
+import axios from 'axios';
+import PropertyPagination from '../propertypagination.jsx'
 
-class AdminpropertyListings extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            propertyList:[
-            {
-                _id: '', 
-                imagefile: '',
-                title: '', 
-                address: '',
-                bedroom: '', 
-                bathroom: '', 
-                area: '', 
-                feature:[],
-                price: '',
-            }
-            ],
-            isLoading: true
+const AdminpropertyListings = () => {
+    const [propertyList,setPropertyList] = useState([
+        {
+            _id: '', 
+            imagefile: '',
+            title: '', 
+            address: '',
+            bedroom: '', 
+            bathroom: '', 
+            area: '', 
+            feature:[],
+            price: '',
         }
+        ]);
+    const [loading,setLoading] = useState(true);
+    let history = useHistory();
+    let query = useLocation().search
+    const getPropertyList =() =>{
+        axios.get('/api/propertyListings' + query)
+        .then((res) => {
+            if(res.data==='notfound'){
+                history.push('/404')
+                return function cleanup(){}
+            }
+            setPropertyList(res.data);
+            setLoading(false);
+        })
+        .catch(()=>{
+            console.log('Error getting data!')
+        })
     }
-    getPropertyList = () => {
-        axios.get('/api/propertyListings')
-            .then((res) => {
-                const propertyList = res.data
-                this.setState({propertyList,isLoading:false})
-                console.log('Data has been received!');
-            })
-            .catch(()=>{
-                console.log('Error getting data!')
-            })
-    }
-    deleteProperty = (propertyId) =>{
+    const deleteProperty = (propertyId) =>{
         let confirmDelete = window.confirm('Are you sure you want to delete this property?')
         if(confirmDelete){
             axios.delete(`/api/propertyListings/${propertyId}`)
@@ -50,47 +51,46 @@ class AdminpropertyListings extends React.Component{
             window.close();
         }
     }
-    componentDidMount(){
-        this.getPropertyList();
-    }
-    render(){
-    if(this.state.isLoading){
+    useEffect(()=>{
+        getPropertyList();
+    },[query])
+    if(loading){
         return <div id='loading'><h1>Loading...</h1></div>
     }
     return(
-    <div>
-        <Link to='/admin/upload' className="listed" id='addProperty'>
-            <h1><i className="fas fa-upload"></i>Add New Property</h1>
-        </Link>
-        {this.state.propertyList.map((property,i) =>
-        <div className="listed" key={i}>
-            <img alt="" src={property.imagefile}/>
-            <div className="list-content">
-                <h2>{property.title}</h2>
-                <p>{property.address}</p>
-                <p>£{property.price}</p>
-                <h4 id='adminlist-room'>
-                    <span><i className="fas fa-bed"></i>{property.bedroom}</span>
-                    <span><i className="fas fa-shower"></i>{property.bathroom}</span>
-                    <span><i className="fas fa-expand-arrows-alt"></i>{property.area} sqft</span>
-                </h4>
-            </div>
-            <div className="list-price" id="adminlist-price">
-                <Link to={`/admin/upload/${property._id}`} className='buttonLink'>
-                    Edit <i className="fas fa-edit"></i>
-                </Link>
-                    <span onClick={() => {this.deleteProperty(property._id)}} className='buttonLink'>Delete <i className="fas fa-trash"></i></span>
-                <Link to={`/admin/${property._id}`} className='buttonLink'>
-                    Preview <i className="fas fa-arrow-right"></i>
-                </Link>
-            </div>
-        </div>)}
-    </div>
-)
-}}
+        <div>
+            <Link to='/admin/upload' className="listed" id='addProperty'>
+                <h1><i className="fas fa-upload"></i>Add New Property</h1>
+            </Link>
+            {propertyList.map((property,i) =>
+            <div className="listed" key={i}>
+                <img alt="" src={property.imagefile}/>
+                <div className="list-content">
+                    <h2>{property.title}</h2>
+                    <p>{property.address}</p>
+                    <p>£{property.price}</p>
+                    <h4 id='adminlist-room'>
+                        <span><i className="fas fa-bed"></i>{property.bedroom}</span>
+                        <span><i className="fas fa-shower"></i>{property.bathroom}</span>
+                        <span><i className="fas fa-expand-arrows-alt"></i>{property.area} sqft</span>
+                    </h4>
+                </div>
+                <div className="list-price" id="adminlist-price">
+                    <Link to={`/admin/upload/${property._id}`} className='buttonLink'>
+                        Edit <i className="fas fa-edit"></i>
+                    </Link>
+                        <span onClick={() => {deleteProperty(property._id)}} className='buttonLink'>Delete <i className="fas fa-trash"></i></span>
+                    <Link to={`/admin/${property._id}`} className='buttonLink'>
+                        Preview <i className="fas fa-arrow-right"></i>
+                    </Link>
+                </div>
+            </div>)}
+            <PropertyPagination/>
+        </div>
+    )}
 
 
-function AdminProperty() {
+const AdminProperty= () => {
     return (
         <div>
             <Toolbar pathname='signOut'/>
@@ -148,9 +148,9 @@ function AdminProperty() {
                     </section>
                     <section id="listings">
                         <h1>Properties for Sale</h1>
-                        <AdminpropertyListings/>
-                    </section>
-                </div> 
+                        <AdminpropertyListings/>              
+                    </section>             
+                </div>
             </div>
            
         </div>

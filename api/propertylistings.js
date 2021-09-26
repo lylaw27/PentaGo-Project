@@ -36,9 +36,40 @@ router.post('/propertyListings',upload.single('propertyImage'),(req,res) => {
 }
 )
 
-router.get('/propertyListings',(req,res) =>{
+router.get('/propertyListings/homepage',(req,res) =>{
     Listings.find({}, (err, data)=>{
-        res.json(data);
+        if(err){
+            console.log(err);
+        }
+        let featuredList = [data[0],data[1],data[2],data[3]]
+        res.json(featuredList)
+    }
+    )
+})
+
+router.get('/propertyListings',(req,res) =>{
+    let page = req.query.page;
+    if(!page){page = 1}
+    Listings.find({}, (err, data)=>{
+        if(err){
+            console.log(err);
+        }
+        let recordPerPage = 2;
+        let start = (page-1) * recordPerPage;
+        let end = page * recordPerPage - 1;
+        let filteredList = [];
+        if(!data[start]){
+            filteredList = 'notfound'
+        }
+        else{
+            if(!data[end]){
+                end = data.length-1
+            }
+            for(let i=start;i<=end;i++){
+                filteredList.push(data[i])
+            }
+        }
+        res.json(filteredList);
     });
 }
 )

@@ -19,7 +19,7 @@ class FeaturedList extends React.Component{
     }
   }
   getPropertyList(){
-    axios.get('/api/propertyListings')
+    axios.get('/api/propertyListings/homepage')
         .then((res) => {
           let propertyList = res.data
           this.setState({propertyList})
