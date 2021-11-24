@@ -78,7 +78,7 @@
 }
 .suggest-image{
     width: 100%;
-    aspect-ratio: auto 3 / 2;
+    aspect-ratio: auto 13 / 11;
     background-size: cover;
     background-position: 50% 50%;
 }

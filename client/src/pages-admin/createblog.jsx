@@ -8,14 +8,14 @@ const CreateBlog = () =>{
         title: "",
         subtitle: "",
         article: "",
-        uploadDate: "",
+        timestamp: "",
         category: "樓價"
     });
     const [submitDisabled,setSubmitDisabled] = useState(false);
     const ChangeHandler = (e) =>{
-        const target = e.target;
-        const name = target.name;
-        const value = target.value;
+        let target = e.target;
+        let name = target.name;
+        let value = target.value;
         setBlogContent({...blogContent,[name]: value});
         console.log(blogContent);
     }
@@ -25,21 +25,13 @@ const CreateBlog = () =>{
         })
         
     }
-    const setDate = () =>{
-        let nowTime = new Date(blogContent.uploadDate);
-        let chineseMonth = ['一','二','三','四','五','六','七','八','九','十','十一','十二']
-        let nowMonth = chineseMonth[nowTime.getMonth()];
-        let nowDate = nowTime.getDate();
-        let nowYear = nowTime.getFullYear();
-        setBlogContent({...blogContent,uploadDate: nowMonth + "月 " + nowDate + ", " + nowYear});
-    }
     const submit = (e) => {
         e.preventDefault();
         const submission = JSON.stringify({
             title: blogContent.title,
             subtitle: blogContent.subtitle,
             article: blogContent.article,
-            uploadDate: blogContent.uploadDate,
+            timestamp: blogContent.timestamp,
             category: blogContent.category
         });
         let formData = new FormData();
@@ -77,7 +69,7 @@ const CreateBlog = () =>{
                         <label htmlFor="subtitle">Subtitle:</label>
                         <input type="text" name="subtitle" value={blogContent.subtitle} onChange={ChangeHandler} required/><br/>
                         <label htmlFor="uploadDate">Date:</label>
-                        <input type="date" name="uploadDate" value={blogContent.uploadDate} onChange={ChangeHandler}/><br/>
+                        <input type="date" name="timestamp" value={blogContent.timestamp} onChange={ChangeHandler}/><br/>
                         <label htmlFor="category">Category:</label>
                         <select name="category" onChange={ChangeHandler} value={blogContent.category}>
                             <option value="樓價">樓價</option>
@@ -88,7 +80,7 @@ const CreateBlog = () =>{
                         </select>
                         <label htmlFor="article">Article:</label>
                         <textarea name="article" value={blogContent.article} onChange={ChangeHandler} required/><br/>
-                        <input onClick={setDate} type="submit" value="Upload" disabled={submitDisabled}/>
+                        <input type="submit" value="Upload" disabled={submitDisabled}/>
                         <div id="blank"/>
                     </form>
                 </div>
