@@ -68,7 +68,7 @@ const CreateBlog = () =>{
                         <input type="text" name="title" value={blogContent.title} onChange={ChangeHandler} required/><br/>
                         <label htmlFor="subtitle">Subtitle:</label>
                         <input type="text" name="subtitle" value={blogContent.subtitle} onChange={ChangeHandler} required/><br/>
-                        <label htmlFor="uploadDate">Date:</label>
+                        <label htmlFor="timestamp">Date:</label>
                         <input type="date" name="timestamp" value={blogContent.timestamp} onChange={ChangeHandler}/><br/>
                         <label htmlFor="category">Category:</label>
                         <select name="category" onChange={ChangeHandler} value={blogContent.category}>

@@ -122,8 +122,14 @@ router.delete('/blogListings/:blogId',(req,res) =>{
 
 router.put('/blogListings/:blogId',(req,res) => {
     let blogId = req.params.blogId
-    console.log(req.body)
-    Listings.findByIdAndUpdate(blogId, req.body, (err,data)=>{
+    let updateBlog = req.body;
+    let nowTime = new Date(updateBlog.timestamp);
+    let chineseMonth = ['一','二','三','四','五','六','七','八','九','十','十一','十二']
+    let nowMonth = chineseMonth[nowTime.getMonth()];
+    let nowDate = nowTime.getDate();
+    let nowYear = nowTime.getFullYear();
+    updateBlog.uploadDate = nowMonth + "月 " + nowDate + ", " + nowYear
+    Listings.findByIdAndUpdate(blogId, updateBlog, (err,data)=>{
         if(err){
             console.log(err)
         }

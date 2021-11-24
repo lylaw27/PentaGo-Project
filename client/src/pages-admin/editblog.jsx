@@ -10,7 +10,7 @@ const EditBlog = () =>{
         title: "",
         subtitle: "",
         article: "",
-        uploadDate: "",
+        timestamp: "",
         category: ""
     });
     const [submitDisabled,setSubmitDisabled] = useState(false);
@@ -31,21 +31,13 @@ const EditBlog = () =>{
         setBlogContent({...blogContent,[name]: value});
         console.log(blogContent);
     }
-    const setDate = () =>{
-        let nowTime = new Date(blogContent.uploadDate);
-        let chineseMonth = ['一','二','三','四','五','六','七','八','九','十','十一','十二']
-        let nowMonth = chineseMonth[nowTime.getMonth()];
-        let nowDate = nowTime.getDate();
-        let nowYear = nowTime.getFullYear();
-        setBlogContent({...blogContent,uploadDate: nowMonth + "月 " + nowDate + ", " + nowYear});
-    }
     const submit = (e) => {
         e.preventDefault();
         const submission = {
             title: blogContent.title,
             subtitle: blogContent.subtitle,
             article: blogContent.article,
-            uploadDate: blogContent.uploadDate,
+            timestamp: blogContent.timestamp,
             category: blogContent.category
         };
         setSubmitDisabled(true);
@@ -65,14 +57,14 @@ const EditBlog = () =>{
         <div id="uploadpage">
         <Toolbar pathname='Home'/>
         <div className="overlap">
-            <h2>Create Blog</h2>
+            <h2>Edit Blog</h2>
                 <form onSubmit={submit}>
                     <label htmlFor="title">Title:</label>
                     <input type="text" name="title" value={blogContent.title} onChange={ChangeHandler} required/><br/>
                     <label htmlFor="subtitle">Subtitle:</label>
                     <input type="text" name="subtitle" value={blogContent.subtitle} onChange={ChangeHandler} required/><br/>
-                    <label htmlFor="uploadDate">Date:</label>
-                    <input type="date" name="uploadDate" value={blogContent.uploadDate} onChange={ChangeHandler}/><br/>
+                    <label htmlFor="timestamp">Date:</label>
+                    <input type="date" name="timestamp" value={blogContent.timestamp} onChange={ChangeHandler}/><br/>
                     <label htmlFor="category">Category:</label>
                     <select name="category" onChange={ChangeHandler} value={blogContent.category}>
                             <option value="樓價">樓價</option>
@@ -83,7 +75,7 @@ const EditBlog = () =>{
                         </select>
                     <label htmlFor="article">Article:</label>
                     <textarea name="article" value={blogContent.article} onChange={ChangeHandler} required/><br/>
-                    <input onClick={setDate} type="submit" value="Upload" disabled={submitDisabled}/>
+                    <input type="submit" value="Upload" disabled={submitDisabled}/>
                     <div id="blank"/>
                 </form>
             </div>
