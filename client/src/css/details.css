@@ -1,99 +1,129 @@
-#back{
-    height: 50px;
-    background-color: #e6e6e6;
+#background-content{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.08) 19%, rgba(0, 0, 0, 0.75) 100%) , url("../images/bgimg2.jpg");
+    background-size: cover;
+    background-position: 50% 30%;
+    color: white;
+    width: 100%;
+    height: 30vw;
+    min-height: 450px;
+    text-align: center;
+    padding-top: 150px;
 }
-#back a{
-    position: relative;
-    top: 15px;
-    left: 9%;
-    font-size: 15px;
-    font-weight: 800;
+#background-content .content-date{
+    font-size: 20px;
+    padding: 10px;
+}
+#background-content h2{
+    font-size: 40px;
+    padding: 10px 20px;
+}
+.content-tag{
+    display: inline-block;
+    padding: 8px 10px;
+    margin: 20px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 13px;
+}
+.content-image{
+    width: 100%;
+    margin: 30px 0;
+}
+#blog-share{
+    margin: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    top: 30px;
+    position: sticky;
+    align-self: flex-start;
+}
+#blog-share i{
+    margin-bottom: 4px ;
+    color: white;
+    font-size: 20px;
+    width: 40px;
+    text-align: center;
+    padding: 10px 0;
+    }
+    #blog-share .fa-share-alt{
     color: black;
 }
-#detail-layout{
-    height: 1800px;
-    margin-left: 9%;
+#blog-share .fa-whatsapp{
+    background-color: #25D366;
 }
-.detail-content{
-    margin-top:40px;
-    width: calc(100% - 400px);
-    display: inline-block;
-    border-bottom: 2px solid #e6e6e6;
-    padding-bottom: 40px;
+#blog-share .fa-facebook-f{
+    background-color: #4267B2;
 }
-.detail-content img{
-    width: 100%;
-}
-.detail-content h1{
-    font-size: 30px;
-    margin-bottom: 20px;
-}
-#detail-title{
-    position: sticky;
-    top:40px;
-    margin-top:40px;
-    margin-right:40px;
-    width: 300px;
-    height: 350px;
-    float: right;
-}
-#detail-title h1{
-    font-size: 22px;
-    margin-bottom: 10px;
-}
-#detail-title h2{
-    font-size: 15px;
-    font-weight: 500;
-    margin-bottom: 15px;
-}
-#detail-title h3{
-    font-size: 25px;
-    margin-bottom: 20px;
-}
-#detail-title #agent-contacts{
-    border-bottom: 2px solid #e6e6e6;
-    border-top: 2px solid #e6e6e6;
-    padding:20px 0;
-}
-#detail-title #agent-contacts div{
-    display:flex;
-    align-items: center;
-    margin: 20px 0;
-}
-#detail-title #agent-contacts img{
-    width: 40px;
-    margin-right: 20px;
-}
-#detail-title #agent-contacts p{
-    font-size: 20px;
-}
-#detail-title #agent-contacts button{
+#blog-share .fa-envelope{
     background-color: #BE2C2D;
-    color: white;
-    border-style: none;
-    box-shadow: none;
-    padding: 10px 0;
+}
+#suggestion-title{
+    margin: 70px 0 20px 0;
+    font-size: 25px;
+    display: flex;
+}
+#suggestion{
+    display: flex;
+    margin-bottom: 100px;
+}
+.suggest-list{
     width: 100%;
-    border-radius: 30px;
-    font-size: 20px;
 }
-#detail-data span{
-    margin-right: 40px;
-}
-#detail-data span i{
-    margin-right: 10px;
-    font-size: 20px ;
-}
-#detail-features ul{
-    list-style-type: none;
-}
-#detail-features li{
-    margin-bottom: 10px;
-}
-#detail-features i{
+.suggest-list-0{
     margin-right: 10px;
 }
-#detail-description p{
-    text-align: justify;
-    font-size: 15px;
+.suggest-list-1{
+    margin-left: 10px;
+}
+.suggest-image{
+    width: 100%;
+    aspect-ratio: auto 3 / 2;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+.suggest-list h3{
+    margin: 10px 0 50px 0;
+}
+#mobile-share{
+    display: none;
+}
+@media only screen and (max-width: 1025px) {
+    #background-content{
+      height: calc(100vh - 80px);
+      background-position: 70% 30%;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)) , url("../images/bgimg2.jpg");
+    }
+    #background-content h2{
+      font-size: 30px;
+    }
+    #blog-share{
+        display: none;
+    }
+    #suggestion{
+        flex-direction: column;
+        align-items: center;
+    }
+    .suggest-list{
+        margin: 0;
+    }
+    #mobile-share{
+        position: sticky;
+        bottom: 0;
+        background-color: #BE2C2D;
+        color: white;
+        padding: 13px 30px;
+    }
+    #mobile-share i{
+        color: white;
+        padding: 0 13px;
+        font-size: 20px;
+    }
+    #share-wrapper{
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 750px;
+    }
 }

@@ -21,6 +21,10 @@
     height: 30px;
     width: 100%;
 }
+#uploadpage select{
+    height: 30px;
+    width: 100%;
+}
 #uploadpage li{
     list-style: none;
     margin: 10px 0;

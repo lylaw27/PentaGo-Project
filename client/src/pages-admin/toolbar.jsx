@@ -5,9 +5,9 @@ class Toolbar extends React.Component{
         return(
         <header id='adminHeader'>
             <PrevPage pathname={this.props.pathname}/>
-            <a id="adminLogo" href="/admin"><img alt="" src={require('../images/logo.svg')}/></a>
+            <a id="adminLogo" href="/admin"><img className="logo"  alt="" src={require('../images/logo.svg')}/></a>
             <div id="toolbar">
-                <a>Hello, Ken !</a>
+                <p>Hello, Ken !</p> 
             </div>
         </header>
         )
@@ -19,7 +19,7 @@ class PrevPage extends React.Component{
     if(this.props.pathname !=='signOut'){
         return(
             <a href="/admin" id="signOut">
-                <i className="fas fa-arrow-left"></i> Back To Property List
+                <i className="fas fa-arrow-left"></i> Back To Admin Page
             </a>
         )
     }
