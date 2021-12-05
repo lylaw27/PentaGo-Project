@@ -1,5 +1,6 @@
 import React, {useEffect,useState,useRef} from 'react';
 import { useParams,useHistory, Link } from 'react-router-dom';
+import ImageGallery from 'react-image-gallery';
 import Header from './header.jsx';
 import Footer from './footer.jsx';
 import axios from 'axios';
@@ -9,12 +10,13 @@ import BlogSubscription from './subscription.jsx';
 const Blogcontent = () => {
     const [blogContent,setBlogContent] = useState({
         _id: "",
-        imagefile: "",
+        imagefile: [],
         title: "",
         subtitle: "",
         article: "",
         uploadDate: "",
-        category: ""
+        category: "",
+        videoUrl: ""
     });
     const [blogSuggest,setBlogSuggest] = useState([
     {
@@ -79,7 +81,7 @@ const Blogcontent = () => {
                     <a href={`https://api.whatsapp.com/send?text=${currentURL}`}><i className="fab fa-whatsapp"/></a>
                     <a href={`mailto:?subject=${blogContent.title}&body=${currentURL}`}><i className="far fa-envelope"/></a>
                 </div>
-                <Blogdetail article={blogContent.article} image={blogContent.imagefile} suggest={blogSuggest}/>
+                <Blogdetail article={blogContent.article} image={blogContent.imagefile} videoUrl={blogContent.videoUrl} suggest={blogSuggest}/>
                 <BlogSidebar scollFunc={scrollToSub}/>
             </section>
             <section id="mobile-share">
@@ -102,10 +104,33 @@ const Blogcontent = () => {
 }
 
 const Blogdetail = props =>{
+    const [blogImage,setBlogImage] = useState([]);
+    const [videoDisplay,setVideoDisplay] = useState("none");
+    const getBlogImage = image =>{
+        let imageItems = [];
+        image.map((image)=>{
+            imageItems.push({original: image})
+        })
+        setBlogImage(imageItems);
+    }
+    const getVideoUrl = (videoUrl) =>{
+        console.log(props.videoUrl)
+        if(videoUrl !== ""){
+            setVideoDisplay("block")
+        }
+    }
+    useEffect(()=>{
+        getBlogImage(props.image);
+        getVideoUrl(props.videoUrl)
+        
+    },[props.image])
     return(
     <div id="blog-content">
         <div className="blog-list">
-            <img className="content-image" alt="" src={props.image}/>
+            <ImageGallery items={blogImage} showFullscreenButton={false} showPlayButton={false}></ImageGallery>
+                <iframe className="blog-video"
+                src={props.videoUrl} style={{display: videoDisplay}}>
+                </iframe>
             <p>
             {props.article}
             </p>

@@ -1,3 +1,4 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
 #background-content{
     background-image: linear-gradient(rgba(0, 0, 0, 0.08) 19%, rgba(0, 0, 0, 0.75) 100%) , url("../images/bgimg2.jpg");
     background-size: cover;
@@ -29,6 +30,11 @@
 .content-image{
     width: 100%;
     margin: 30px 0;
+}
+.blog-video{
+    margin: 30px 0;
+    width: 100%;
+    aspect-ratio: 16 / 9;
 }
 #blog-share{
     margin: 50px 20px;
@@ -78,7 +84,7 @@
 }
 .suggest-image{
     width: 100%;
-    aspect-ratio: auto 13 / 11;
+    aspect-ratio: 13 / 11;
     background-size: cover;
     background-position: 50% 50%;
 }
@@ -108,6 +114,7 @@
         margin: 0;
     }
     #mobile-share{
+        display: block;
         position: sticky;
         bottom: 0;
         background-color: #BE2C2D;

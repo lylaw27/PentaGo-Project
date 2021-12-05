@@ -1,16 +1,17 @@
-import React, {useCallback, useState} from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 import Toolbar from './toolbar.jsx';
 
 const CreateBlog = () =>{
     const [blogContent,setBlogContent] = useState({
-        imagefile: "",
         title: "",
         subtitle: "",
         article: "",
         timestamp: "",
+        videoUrl: "",
         category: "樓價"
     });
+    const [blogImage,setBlogImage] = useState([]);
     const [submitDisabled,setSubmitDisabled] = useState(false);
     const ChangeHandler = (e) =>{
         let target = e.target;
@@ -19,23 +20,16 @@ const CreateBlog = () =>{
         setBlogContent({...blogContent,[name]: value});
         console.log(blogContent);
     }
-    const ImageSelectionHandler = (e) => {   
-        setBlogContent({
-            ...blogContent,imagefile: e.target.files[0]
-        })
-        
+    const ImageSelectionHandler = (e) => {
+        setBlogImage(e.target.files);
     }
     const submit = (e) => {
         e.preventDefault();
-        const submission = JSON.stringify({
-            title: blogContent.title,
-            subtitle: blogContent.subtitle,
-            article: blogContent.article,
-            timestamp: blogContent.timestamp,
-            category: blogContent.category
-        });
+        const submission = JSON.stringify(blogContent);
         let formData = new FormData();
-        formData.append('blogImage',blogContent.imagefile,e.target.imagefile.name);
+        for(let i=0;i<blogImage.length;i++){
+            formData.append('blogImage',blogImage[i]);
+        }
         formData.append('blogInfo',submission);
         setSubmitDisabled(true);
         axios({
@@ -55,7 +49,6 @@ const CreateBlog = () =>{
             console.log('Server error!');
         })
     }
-    console.log(blogContent)
         return(
             <div id="uploadpage">
             <Toolbar pathname='Home'/>
@@ -63,13 +56,15 @@ const CreateBlog = () =>{
                 <h2>Create Blog</h2>
                     <form onSubmit={submit}>
                         <label htmlFor="Image">Image:</label>
-                        <input type="file" name="imagefile" accept="image/*" onChange={ImageSelectionHandler} required/><br/>
+                        <input type="file" name="imagefile" accept="image/*" onChange={ImageSelectionHandler} multiple required/><br/>
                         <label htmlFor="title">Title:</label>
                         <input type="text" name="title" value={blogContent.title} onChange={ChangeHandler} required/><br/>
                         <label htmlFor="subtitle">Subtitle:</label>
                         <input type="text" name="subtitle" value={blogContent.subtitle} onChange={ChangeHandler} required/><br/>
                         <label htmlFor="timestamp">Date:</label>
                         <input type="date" name="timestamp" value={blogContent.timestamp} onChange={ChangeHandler}/><br/>
+                        <label htmlFor="videoUrl">Youtube Link:</label>
+                        <input type="text" name="videoUrl" value={blogContent.videoUrl} onChange={ChangeHandler}/><br/>
                         <label htmlFor="category">Category:</label>
                         <select name="category" onChange={ChangeHandler} value={blogContent.category}>
                             <option value="樓價">樓價</option>

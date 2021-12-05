@@ -6,13 +6,13 @@ import Toolbar from './toolbar.jsx';
 const EditBlog = () =>{
     const [blogContent,setBlogContent] = useState({
         _id: "",
-        imagefile: "",
         title: "",
         subtitle: "",
         article: "",
         timestamp: "",
         category: ""
     });
+    const [blogImage,setBlogImage] = useState([]);
     const [submitDisabled,setSubmitDisabled] = useState(false);
     const {blogId} = useParams();
     const getPropertyDetail = () => {
@@ -31,19 +31,26 @@ const EditBlog = () =>{
         setBlogContent({...blogContent,[name]: value});
         console.log(blogContent);
     }
+    const ImageSelectionHandler = (e) => {
+        setBlogImage(e.target.files);
+    }
     const submit = (e) => {
         e.preventDefault();
-        const submission = {
-            title: blogContent.title,
-            subtitle: blogContent.subtitle,
-            article: blogContent.article,
-            timestamp: blogContent.timestamp,
-            category: blogContent.category
-        };
+        const submission = JSON.stringify(blogContent);
+        let formData = new FormData();
+        for(let i=0;i<blogImage.length;i++){
+            formData.append('blogImage',blogImage[i]);
+        }
+        formData.append('blogInfo',submission);
         setSubmitDisabled(true);
-        axios.put(`/api/blogListings/${blogContent._id}`,submission)
+        axios({
+            url:`/api/blogListings/${blogId}`,
+            method:'PUT',
+            headers: {"Content-Type": "multipart/form-data" },
+            data: formData
+        })
         .then(() =>{
-            alert('Edit succeed!');
+            alert('Upload succeed!');
             setSubmitDisabled(false);
             console.log('Data saved!');
         })
@@ -59,12 +66,16 @@ const EditBlog = () =>{
         <div className="overlap">
             <h2>Edit Blog</h2>
                 <form onSubmit={submit}>
+                    <label htmlFor="Image">Image:</label>
+                    <input type="file" name="imagefile" accept="image/*" onChange={ImageSelectionHandler} multiple/><br/>
                     <label htmlFor="title">Title:</label>
                     <input type="text" name="title" value={blogContent.title} onChange={ChangeHandler} required/><br/>
                     <label htmlFor="subtitle">Subtitle:</label>
                     <input type="text" name="subtitle" value={blogContent.subtitle} onChange={ChangeHandler} required/><br/>
                     <label htmlFor="timestamp">Date:</label>
                     <input type="date" name="timestamp" value={blogContent.timestamp} onChange={ChangeHandler}/><br/>
+                    <label htmlFor="videoUrl">Youtube Link:</label>
+                    <input type="text" name="videoUrl" value={blogContent.videoUrl} onChange={ChangeHandler}/><br/>
                     <label htmlFor="category">Category:</label>
                     <select name="category" onChange={ChangeHandler} value={blogContent.category}>
                             <option value="樓價">樓價</option>

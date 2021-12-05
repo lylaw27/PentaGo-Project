@@ -20,18 +20,44 @@ const storage = new CloudinaryStorage({
     },
 });
 
+const deleteImage = (image_id) => {
+    image_id.map((image_id)=>{
+        cloudinary.uploader.destroy(image_id, (err,result)=> {
+        if(err){
+            console.log(err)
+        }
+        else{
+            console.log(result)
+        }
+    });
+    })
+}
+
 const upload = multer({storage: storage});
 
-router.post('/blogListings',upload.single('blogImage'),(req,res) => {
-    let newBlog = JSON.parse(req.body.blogInfo);
-    newBlog.imagefile = req.file.path;
-    newBlog.image_id = req.file.filename;
+const dateProcessor = (newBlog) => {
     let nowTime = new Date(newBlog.timestamp);
     let chineseMonth = ['一','二','三','四','五','六','七','八','九','十','十一','十二']
     let nowMonth = chineseMonth[nowTime.getMonth()];
     let nowDate = nowTime.getDate();
     let nowYear = nowTime.getFullYear();
     newBlog.uploadDate = nowMonth + "月 " + nowDate + ", " + nowYear
+    return newBlog
+}
+
+router.post('/blogListings',upload.array('blogImage'),(req,res) => {
+    let newBlog = JSON.parse(req.body.blogInfo);
+    let imageproperty = {
+        filename: [],
+        path: []
+    }
+    req.files.map((imagelist)=>{
+        imageproperty.path.push(imagelist.path);
+        imageproperty.filename.push(imagelist.filename);
+    })
+    newBlog.image_id = imageproperty.filename;
+    newBlog.imagefile = imageproperty.path;
+    newBlog = dateProcessor(newBlog);
     res.send(newBlog);
     const newlisting = new Listings(newBlog);
     newlisting.save()
@@ -67,7 +93,10 @@ router.get('/blogListings',(req,res) =>{
                 end = data.length-1
             }
             for(let i=start;i<=end;i++){
-                filteredList.push(data[i])
+                let modifiedData = data[i]
+                modifiedData.imagefile = modifiedData.imagefile[0]
+                modifiedData.image_id = modifiedData.image_id[0]
+                filteredList.push(modifiedData)
             }
         }
         res.json(filteredList);
@@ -84,7 +113,8 @@ router.get('/blogListings/:blogId',(req,res) =>{
             result = 'notfound'
         }
         else{
-            result = data
+            result = data;
+            console.log(result)
         }
         res.json(result);
     })
@@ -98,14 +128,7 @@ router.delete('/blogListings/:blogId',(req,res) =>{
             console.log(err)
         }
         else{
-            cloudinary.uploader.destroy(data.image_id, (err,result)=> {
-                if(err){
-                    console.log(err)
-                }
-                else{
-                    console.log(result)
-                }
-            });
+            deleteImage(data.image_id)
         }
     })
     Listings.findByIdAndRemove(blogId, (err, data) => {
@@ -120,15 +143,24 @@ router.delete('/blogListings/:blogId',(req,res) =>{
 }
 )
 
-router.put('/blogListings/:blogId',(req,res) => {
-    let blogId = req.params.blogId
-    let updateBlog = req.body;
-    let nowTime = new Date(updateBlog.timestamp);
-    let chineseMonth = ['一','二','三','四','五','六','七','八','九','十','十一','十二']
-    let nowMonth = chineseMonth[nowTime.getMonth()];
-    let nowDate = nowTime.getDate();
-    let nowYear = nowTime.getFullYear();
-    updateBlog.uploadDate = nowMonth + "月 " + nowDate + ", " + nowYear
+router.put('/blogListings/:blogId',upload.array('blogImage'),(req,res) => {
+    let updateBlog = JSON.parse(req.body.blogInfo);
+    let blogId = req.params.blogId;
+    updateBlog = dateProcessor(updateBlog)
+    console.log(req.files)
+    if(req.files != ""){
+        let imageproperty = {
+        filename: [],
+        path: []
+        }
+        deleteImage(updateBlog.image_id)
+        req.files.map((imagelist)=>{
+            imageproperty.path.push(imagelist.path);
+            imageproperty.filename.push(imagelist.filename);
+        })
+        updateBlog.image_id = imageproperty.filename;
+        updateBlog.imagefile = imageproperty.path;
+    }
     Listings.findByIdAndUpdate(blogId, updateBlog, (err,data)=>{
         if(err){
             console.log(err)
@@ -138,6 +170,7 @@ router.put('/blogListings/:blogId',(req,res) => {
             res.json(data);
         }
     })
+    
 })
 
 router.get('/blogListingsCount',(req,res) =>{

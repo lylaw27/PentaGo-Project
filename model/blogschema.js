@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const blogSchema = new Schema({
-    imagefile: String,
-    image_id: String,
+    imagefile: [String],
+    image_id: [String],
+    videoUrl: String,
     title: String,
     subtitle: String,
     article: String,
