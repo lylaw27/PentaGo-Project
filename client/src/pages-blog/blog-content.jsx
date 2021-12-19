@@ -78,7 +78,7 @@ const Blogcontent = () => {
                 <div id="blog-share">
                     <i className="fas fa-share-alt"/>
                     
-                    <a href={`https://www.facebook.com/dialog/feed?app_id=1862855510582396&link=${currentURL}`}><i className="fab fa-facebook-f"/></a>
+                    <a href={`http://www.facebook.com/share.php?u=${currentURL}&title=${blogContent.title}&picture=${blogContent.imagefile}`}><i className="fab fa-facebook-f"/></a>
                     <a href={`https://api.whatsapp.com/send?text=${currentURL}`}><i className="fab fa-whatsapp"/></a>
                     <a href={`mailto:?subject=${blogContent.title}&body=${currentURL}`}><i className="far fa-envelope"/></a>
                 </div>
