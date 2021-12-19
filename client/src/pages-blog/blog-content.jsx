@@ -6,6 +6,7 @@ import Footer from './footer.jsx';
 import axios from 'axios';
 import BlogSidebar from './blog-sidebar.jsx';
 import BlogSubscription from './subscription.jsx';
+import {Helmet} from "react-helmet";
 
 const Blogcontent = () => {
     const [blogContent,setBlogContent] = useState({
@@ -61,6 +62,10 @@ const Blogcontent = () => {
       }
     return (
         <div>
+            <Helmet>
+            <meta property="og:title" content={blogContent.title}/>
+            <meta property="og:image" content={blogContent.imagefile[0]}/>
+            </Helmet>
             <Header/>
             <div className="overlap">
            <section id="background-content">
@@ -77,7 +82,7 @@ const Blogcontent = () => {
             <section id="blog-body">
                 <div id="blog-share">
                     <i className="fas fa-share-alt"/>
-                    <a href={`http://www.facebook.com/share.php?u=${currentURL}&title=${blogContent.title}&picture=${blogContent.imagefile}`}><i className="fab fa-facebook-f"/></a>
+                    <a href={`http://www.facebook.com/share.php?u=${currentURL}`}><i className="fab fa-facebook-f"/></a>
                     <a href={`https://api.whatsapp.com/send?text=${currentURL}`}><i className="fab fa-whatsapp"/></a>
                     <a href={`mailto:?subject=${blogContent.title}&body=${currentURL}`}><i className="far fa-envelope"/></a>
                 </div>
