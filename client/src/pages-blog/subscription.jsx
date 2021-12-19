@@ -22,7 +22,7 @@ const BlogSubscription = ()=>{
     }
     return(
     <section id="subscription">
-        <h1>歡迎訂閲並接受我們最新的資訊！</h1>
+        <h1>歡迎訂閲並接收我們最新的資訊！</h1>
         <form id="subscription-details" onSubmit={submitEmail}>
             <input htmlFor="email" placeholder="電子郵件" type="email" id="input-email" onChange={ChangeHandler} value={emailSub.email} required/>
             <input ref={submitted} type="submit" value="訂閲" id="input-submit" />

@@ -138,7 +138,7 @@ const Blogdetail = props =>{
                 <div id="suggestion">
                     {props.suggest.map((suggest,i) =>
                         <Link to={`/${suggest._id}`} key={i} className={"suggest-list-" + i + " suggest-list"}>
-                            <div className="suggest-image" style={{backgroundImage: `url(${suggest.imagefile})`}}/>
+                            <div className="suggest-image" style={{backgroundImage: `url(${suggest.imagefile[0]})`}}/>
                             <h3>{suggest.title}</h3>
                         </Link>
                     )}

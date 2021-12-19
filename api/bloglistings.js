@@ -81,7 +81,7 @@ router.get('/blogListings',(req,res) =>{
         if(err){
             console.log(err);
         }
-        let recordPerPage = 4;
+        let recordPerPage = 8;
         let start = (page-1) * recordPerPage;
         let end = page * recordPerPage - 1;
         let filteredList = [];

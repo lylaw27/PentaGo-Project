@@ -84,8 +84,9 @@
 }
 .suggest-image{
     width: 100%;
-    aspect-ratio: 13 / 11;
-    background-size: cover;
+    aspect-ratio: 1 / 1;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: 50% 50%;
 }
 .suggest-list h3{
