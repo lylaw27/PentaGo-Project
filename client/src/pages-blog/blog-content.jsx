@@ -118,12 +118,14 @@ const Blogdetail = props =>{
         if(videoUrl !== ""){
             setVideoDisplay("block")
         }
+        else{
+            setVideoDisplay("none")
+        }
     }
     useEffect(()=>{
         getBlogImage(props.image);
         getVideoUrl(props.videoUrl)
-        
-    },[props.image])
+    },[props.image,props.videoUrl])
     return(
     <div id="blog-content">
         <div className="blog-list">
