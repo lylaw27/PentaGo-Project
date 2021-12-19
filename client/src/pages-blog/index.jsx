@@ -6,6 +6,7 @@ import BlogSubscription from './subscription.jsx';
 import Header from './header.jsx';
 import Footer from './footer.jsx';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 const Bloglist = ()=>{
   const [blogList,setBlogList] = useState([
@@ -77,6 +78,10 @@ const Home =()=>{
   }
     return(
     <div>
+      <Helmet>
+        <meta property="og:title" content="PentaGO! – 英國物業領航"/>
+        <meta property="og:image" content="https://scontent-lhr8-2.xx.fbcdn.net/v/t1.6435-9/p960x960/174140471_256443392880376_4515029641692614416_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=e3f864&_nc_ohc=eInCvDP6tfkAX9i807s&_nc_ht=scontent-lhr8-2.xx&oh=00_AT_Rmxj0KzX2-jMrYzg6XAapBGH0vOs853QOPAP7lQ0Kgw&oe=61E40218"/>
+      </Helmet>
       <Header/>
       <div className="overlap">
       <div id="background">
