@@ -98,6 +98,9 @@ const EditBlog = () =>{
                     <label htmlFor="article">Article:</label>
                     <div style={{ border: "1px solid black", padding: '4px', minHeight: '400px' , backgroundColor: 'white', color: 'black'}}>
                             <Editor
+                                toolbar={{
+                                    fontFamily: {options: ['Openhuninn','Noto Sans TC','Montserrat','PMingLiU','Arial', 'Times New Roman']}
+                                }}
                                 editorState={editorState}
                                 onEditorStateChange={onEditorStateChange}
                                 localization={{

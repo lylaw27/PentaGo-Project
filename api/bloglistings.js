@@ -13,18 +13,6 @@ cloudinary.config({
     api_secret: "S2ggAr_6H5aUw5e9zq0LP5xqa2I",
 });
 
-// Listings.find({},(err, doc)=>{
-//     doc.forEach(obj =>{
-//         let updateObj = {blocks:[{key:"bjngr",text: obj.article,type:"unstyled",depth:0,inlineStyleRanges:[],entityRanges:[],data:{}}],entityMap:{}}
-//         if(typeof obj.article === 'string'){
-//            Listings.findByIdAndUpdate(obj._id, {article: updateObj}, (error,data)=>{
-//             console.log(data)
-//             })
-//         }
-        
-//     })
-// })
-
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {

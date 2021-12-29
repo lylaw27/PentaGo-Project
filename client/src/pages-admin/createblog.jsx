@@ -3,7 +3,7 @@ import axios from 'axios';
 import Toolbar from './toolbar.jsx';
 import { EditorState, convertToRaw  } from 'draft-js';
 import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+
 
 
 const CreateBlog = () =>{
@@ -89,6 +89,9 @@ const CreateBlog = () =>{
                         <label htmlFor="article">Article:</label>
                         <div style={{ border: "1px solid black", padding: '4px', minHeight: '400px' , backgroundColor: 'white', color: 'black'}}>
                             <Editor
+                                toolbar={{
+                                    fontFamily: {options: ['Openhuninn','Noto Sans TC','Montserrat','PMingLiU','Arial', 'Times New Roman']}
+                                }}
                                 editorState={editorState}
                                 onEditorStateChange={onEditorStateChange}
                                 localization={{
