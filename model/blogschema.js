@@ -7,11 +7,11 @@ const blogSchema = new Schema({
     videoUrl: String,
     title: String,
     subtitle: String,
-    article: String,
+    article: Object,
     timestamp: Date,
     uploadDate: String,
-    category: String
-})
+    category: String, 
+},{minimize: false})
 
 const blogModel = mongoose.model('listings',blogSchema);
 

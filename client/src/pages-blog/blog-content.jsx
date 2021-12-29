@@ -6,7 +6,8 @@ import Footer from './footer.jsx';
 import axios from 'axios';
 import BlogSidebar from './blog-sidebar.jsx';
 import BlogSubscription from './subscription.jsx';
-import {Helmet} from "react-helmet";
+import { EditorState, convertFromRaw} from 'draft-js';
+import { Editor } from "react-draft-wysiwyg";
 
 const Blogcontent = () => {
     const [blogContent,setBlogContent] = useState({
@@ -14,7 +15,7 @@ const Blogcontent = () => {
         imagefile: [],
         title: "",
         subtitle: "",
-        article: "",
+        article: null,
         uploadDate: "",
         category: "",
         videoUrl: ""
@@ -37,7 +38,8 @@ const Blogcontent = () => {
                 history.push('/404')
                 return function cleanup(){}
             }
-            setBlogContent(res.data);
+            let blogDetail = res.data;
+            setBlogContent({...blogDetail , article: EditorState.createWithContent(convertFromRaw(res.data.article))});
         })
         .catch(()=>{
             console.log('Error getting data!')
@@ -62,10 +64,6 @@ const Blogcontent = () => {
       }
     return (
         <div>
-            <Helmet>
-            <meta property="og:title" content={blogContent.title}/>
-            <meta property="og:image" content={blogContent.imagefile[0]}/>
-            </Helmet>
             <Header/>
             <div className="overlap">
            <section id="background-content">
@@ -138,9 +136,14 @@ const Blogdetail = props =>{
                 <iframe className="blog-video"
                 src={props.videoUrl} style={{display: videoDisplay}}>
                 </iframe>
-            <p>
+            <Editor
+                toolbarHidden
+                editorState={props.article}
+                readOnly={true}
+            />
+            {/* <p>
             {props.article}
-            </p>
+            </p> */}
             <h3 id="suggestion-title">你可能會喜歡</h3>
                 <div id="suggestion">
                     {props.suggest.map((suggest,i) =>

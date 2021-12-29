@@ -1,6 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
-* {
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat','Noto Sans TC', sans-serif;
+  font-weight: 300;
+}
+header {
   margin: 0;
   padding: 0;
   box-sizing: border-box;

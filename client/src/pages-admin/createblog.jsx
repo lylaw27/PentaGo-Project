@@ -1,16 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Toolbar from './toolbar.jsx';
+import { EditorState, convertToRaw  } from 'draft-js';
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+
 
 const CreateBlog = () =>{
     const [blogContent,setBlogContent] = useState({
         title: "",
         subtitle: "",
-        article: "",
+        article: {},
         timestamp: "",
         videoUrl: "",
         category: "樓價"
     });
+    const [editorState,setEditorState] = useState(
+        EditorState.createEmpty()
+    )
     const [blogImage,setBlogImage] = useState([]);
     const [submitDisabled,setSubmitDisabled] = useState(false);
     const ChangeHandler = (e) =>{
@@ -22,6 +29,11 @@ const CreateBlog = () =>{
     }
     const ImageSelectionHandler = (e) => {
         setBlogImage(e.target.files);
+    }
+    const onEditorStateChange = (value) =>{
+        console.log(value)
+        setEditorState(value);
+        setBlogContent({...blogContent, article: convertToRaw(editorState.getCurrentContent())});
     }
     const submit = (e) => {
         e.preventDefault();
@@ -40,6 +52,7 @@ const CreateBlog = () =>{
         })
         .then(() =>{
             alert('Upload succeed!');
+            console.log(submission)
             setSubmitDisabled(false);
             console.log('Data saved!');
         })
@@ -48,7 +61,7 @@ const CreateBlog = () =>{
             setSubmitDisabled(false);
             console.log('Server error!');
         })
-    }
+        }
         return(
             <div id="uploadpage">
             <Toolbar pathname='Home'/>
@@ -74,7 +87,16 @@ const CreateBlog = () =>{
                             <option value="教育">教育</option>
                         </select>
                         <label htmlFor="article">Article:</label>
-                        <textarea name="article" value={blogContent.article} onChange={ChangeHandler} required/><br/>
+                        <div style={{ border: "1px solid black", padding: '4px', minHeight: '400px' , backgroundColor: 'white', color: 'black'}}>
+                            <Editor
+                                editorState={editorState}
+                                onEditorStateChange={onEditorStateChange}
+                                localization={{
+                                    locale: 'zh_tw',
+                                }}
+                            />
+                            
+                        </div>
                         <input type="submit" value="Upload" disabled={submitDisabled}/>
                         <div id="blank"/>
                     </form>

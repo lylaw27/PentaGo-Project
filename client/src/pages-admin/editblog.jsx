@@ -2,28 +2,39 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Toolbar from './toolbar.jsx';
+import { EditorState, convertFromRaw, convertToRaw  } from 'draft-js';
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const EditBlog = () =>{
     const [blogContent,setBlogContent] = useState({
         _id: "",
         title: "",
         subtitle: "",
-        article: "",
+        article: {},
         timestamp: "",
         category: ""
     });
+    const [editorState,setEditorState] = useState()
     const [blogImage,setBlogImage] = useState([]);
     const [submitDisabled,setSubmitDisabled] = useState(false);
     const {blogId} = useParams();
     const getPropertyDetail = () => {
         axios.get(`/api/blogListings/${blogId}`)
         .then((res) => {
+            console.log(convertFromRaw(res.data.article))
             setBlogContent(res.data);
+            setEditorState(EditorState.createWithContent(convertFromRaw(res.data.article)))
         })
     }
     useEffect(()=>{
         getPropertyDetail();
+        // 
     },[])
+    const onEditorStateChange = (value) =>{
+        setEditorState(value);
+        setBlogContent({...blogContent, article: convertToRaw(editorState.getCurrentContent())});
+    }
     const ChangeHandler = (e) =>{
         const target = e.target;
         const name = target.name;
@@ -85,7 +96,15 @@ const EditBlog = () =>{
                             <option value="教育">教育</option>
                         </select>
                     <label htmlFor="article">Article:</label>
-                    <textarea name="article" value={blogContent.article} onChange={ChangeHandler} required/><br/>
+                    <div style={{ border: "1px solid black", padding: '4px', minHeight: '400px' , backgroundColor: 'white', color: 'black'}}>
+                            <Editor
+                                editorState={editorState}
+                                onEditorStateChange={onEditorStateChange}
+                                localization={{
+                                    locale: 'zh_tw',
+                                }}
+                            />
+                        </div>
                     <input type="submit" value="Upload" disabled={submitDisabled}/>
                     <div id="blank"/>
                 </form>
