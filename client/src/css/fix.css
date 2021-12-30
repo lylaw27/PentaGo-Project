@@ -4,10 +4,10 @@
   font-family: 'Openhuninn';
   src: url(./fonts/jf-openhuninn-1.1.ttf);
 }
-/* @font-face {
+@font-face {
   font-family: 'PMingLiU';
   src: url(./fonts/PMingLiU.ttf);
-} */
+}
 body {
   margin: 0;
   padding: 0;

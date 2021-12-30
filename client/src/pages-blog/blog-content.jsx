@@ -140,6 +140,7 @@ const Blogdetail = props =>{
                 toolbarHidden
                 editorState={props.article}
                 readOnly={true}
+                toolbar={{link: {showOpenOptionOnHover: false}}}
             />
             {/* <p>
             {props.article}
