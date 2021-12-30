@@ -38,7 +38,7 @@
 #blog-section{
   padding-bottom: 100px;
 }
-#blog-content{
+#blog-wrapper{
   height: 100%;
   width: 58%;
   max-width: 750px;
@@ -231,7 +231,7 @@
   .blog-list p{
     font-size: 15px;
   }
-  #blog-content{
+  #blog-wrapper{
     width: 100%;
   }
   .blog-read{

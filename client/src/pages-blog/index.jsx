@@ -45,7 +45,7 @@ if(loading){
     return <div id='loading'><h1>Loading...</h1></div>
 }
   return(
-    <div id="blog-content">
+    <div id="blog-wrapper">
       {blogList.map((blogList,i) =>
       <div className="blog-list" key={i}>
         <div className="blog-date">

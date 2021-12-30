@@ -116,11 +116,12 @@
     }
     #mobile-share{
         display: block;
+        z-index: 10;
         position: sticky;
         bottom: 0;
         background-color: #BE2C2D;
         color: white;
-        padding: 13px 30px;
+        padding: 5px 30px;
     }
     #mobile-share i{
         color: white;

@@ -130,21 +130,22 @@ const Blogdetail = props =>{
         getVideoUrl(props.videoUrl)
     },[props.image,props.videoUrl])
     return(
-    <div id="blog-content">
+    <div id="blog-wrapper">
         <div className="blog-list">
-            <ImageGallery items={blogImage} showFullscreenButton={false} showPlayButton={false}></ImageGallery>
+            <div className='blog-content'>
+                <ImageGallery items={blogImage} showFullscreenButton={false} showPlayButton={false}/>
                 <iframe className="blog-video"
                 src={props.videoUrl} style={{display: videoDisplay}}>
                 </iframe>
-            <Editor
+                <Editor
                 toolbarHidden
                 editorState={props.article}
                 readOnly={true}
                 toolbar={{link: {showOpenOptionOnHover: false}}}
-            />
-            {/* <p>
-            {props.article}
-            </p> */}
+                />
+
+            </div>
+            
             <h3 id="suggestion-title">你可能會喜歡</h3>
                 <div id="suggestion">
                     {props.suggest.map((suggest,i) =>
