@@ -23,7 +23,7 @@ const BlogSidebar = props =>{
     <div id="blog-sidebar">
         <div className="blog-sidebox">
             <h1>關於我們</h1>
-            <img id="queenimg" alt="" src={require('../images/queen.jpg')}/>
+            <img id="profileimg" alt="" src={require('../images/profilepic.png')}/>
             <p>身處香江 遠眺英倫</p>
             <p>不列顛島 地大物博</p>
             <p>歷史文化 璀璨奪目</p>
