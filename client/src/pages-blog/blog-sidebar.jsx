@@ -1,14 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const BlogSidebar = props =>{
     const [recentBlog,setRecentBlog] = useState([{
         _id:"",
         title: ""
     }])
-    const getBlogRecent = () =>{
-        axios.get('/api/blogListings')
+    let path = useLocation().pathname;
+    const getBlogRecent = (apiPath) =>{
+        axios.get(`/api/${apiPath}`)
         .then((res)=>{
             setRecentBlog(res.data)
         })
@@ -17,7 +18,11 @@ const BlogSidebar = props =>{
         })
     }
     useEffect(()=>{
-        getBlogRecent();
+        let apiPath = 'igPostListings';
+        if(path === '/blog'){
+            apiPath = 'blogListings'
+        }
+        getBlogRecent(apiPath);
     },[])
     return(
     <div id="blog-sidebar">
@@ -55,11 +60,11 @@ const BlogSidebar = props =>{
         </div>
         <div className="blog-sidebox" id="blog-sidebox-post">
             <h1>分類</h1>
-            <Link to='/?category=樓價'><p>樓價</p></Link>
-            <Link to='/?category=專題'><p>專題</p></Link>
-            <Link to='/?category=歷史文化'><p>歷史文化</p></Link>
-            <Link to='/?category=就業'><p>就業</p></Link>
-            <Link to='/?category=教育'><p>教育</p></Link>
+            <Link to={`${path}?category=樓價`}><p>樓價</p></Link>
+            <Link to={`${path}?category=專題`}><p>專題</p></Link>
+            <Link to={`${path}?category=歷史文化`}><p>歷史文化</p></Link>
+            <Link to={`${path}?category=就業`}><p>就業</p></Link>
+            <Link to={`${path}?category=教育`}><p>教育</p></Link>
         </div>
     </div>
   )

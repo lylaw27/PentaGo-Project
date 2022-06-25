@@ -1,40 +1,49 @@
-#uploadpage{
-    background-color: #BE2C2D;
-    color: white;
-}
-#uploadpage img{
+.uploadpage img{
     display: block;
     margin: auto;
 }
-#uploadpage h2{
+.uploadpage h2{
     text-align: center;
 }
-#uploadpage form{
-    width: 50%;
+.uploadpage form{
+    width: 75%;
     margin: auto;
 }
-#uploadpage label{
+.uploadpage label{
     display: block;
     margin-top: 30px;
 }
-#uploadpage input{
+.uploadpage input{
     height: 30px;
     width: 100%;
 }
-#uploadpage select{
+.uploadpage .input-border{
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+.uploadpage select{
     height: 30px;
     width: 100%;
+    appearance: none;
 }
-#uploadpage li{
+.uploadpage li{
     list-style: none;
     margin: 10px 0;
 }
-#uploadpage textarea{
-    height: 200px;
+.uploadpage .textarea{
+    min-height: 400px;
+    background-color: white;
     width: 100%; 
     margin: 10px 0;
 }
-#uploadpage #blank{
-    height: 200px;
-   
+.uploadpage .submit-button{
+    height: 40px;
+    font-size: 14px;
+    font-family: 'Openhuninn';
+}
+.uploadpage .submit-button:hover{
+    background-color: #BE2C2D;
+    color: white;
+    border: 1px solid #BE2C2D;
 }

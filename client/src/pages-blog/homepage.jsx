@@ -23,7 +23,7 @@ let history = useHistory();
 let query = useLocation().search;
 
 const getBlogList = () =>{
-    axios.get('/api/blogListings' + query)
+    axios.get(`/api/igPostListings` + query)
     .then((res) => {
         if(res.data==='notfound'){
             history.push('/404')
@@ -38,11 +38,19 @@ const getBlogList = () =>{
 }
 
 useEffect(()=>{
+  setLoading(true)
   getBlogList();
   window.scrollTo(0, 0);
 },[query])
+
 if(loading){
-    return <div id='loading'><h1>Loading...</h1></div>
+    return(
+      <div id="blog-wrapper">
+        <div className='loading'>
+          <h1>Loading...</h1>
+        </div>
+      </div>
+    )
 }
   return(
     <div id="blog-wrapper">
@@ -61,7 +69,7 @@ if(loading){
         <p>
         {blogList.subtitle}
         </p>
-        <Link to={`/${blogList._id}`} className="blog-read">
+        <Link to={`igpost/${blogList._id}`} className="blog-read">
           閲讀更多
         </Link>
       </div>)}

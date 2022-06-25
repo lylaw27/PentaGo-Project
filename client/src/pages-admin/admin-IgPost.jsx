@@ -20,7 +20,7 @@ const AdminBlogListings = () => {
     let history = useHistory();
     let query = useLocation().search
     const getBlogList = () =>{
-        axios.get('/api/blogListings' + query)
+        axios.get('/api/igPostListings' + query)
         .then((res) => {
             if(res.data==='notfound'){
                 history.push('/404')
@@ -36,7 +36,7 @@ const AdminBlogListings = () => {
     const deleteBlog = (blogId) =>{
         let confirmDelete = window.confirm('Are you sure you want to delete this blog?')
         if(confirmDelete){
-            axios.delete(`/api/blogListings/${blogId}`)
+            axios.delete(`/api/igPostListings/${blogId}`)
             .then(() => {
                 alert('Data has been deleted!')
             })
@@ -52,12 +52,12 @@ const AdminBlogListings = () => {
         getBlogList();
     },[query])
     if(loading){
-        return <div id='loading'><h1>Loading...</h1></div>
+        return <div className='loading'><h1>Loading...</h1></div>
     }
     return(
         <div>
-            <Link to='/admin/upload' className="listed" id='addBlog'>
-                <h1><i className="fas fa-upload"></i>Add New Blog</h1>
+            <Link to='/admin/igpost/upload' className="listed" id='addBlog'>
+                <h1><i className="fas fa-upload"></i>Add New IG Post</h1>
             </Link>
             {blogList.map((blog,i) =>
             <div className="listed" key={i}>
@@ -69,11 +69,11 @@ const AdminBlogListings = () => {
                     </h4>
                 </div>
                 <div className="list-price" id="adminlist-price">
-                    <Link to={`/admin/upload/${blog._id}`} className='buttonLink'>
+                    <Link to={`/admin/igpost/upload/${blog._id}`} className='buttonLink'>
                         Edit <i className="fas fa-edit"></i>
                     </Link>
                         <span onClick={() => {deleteBlog(blog._id)}} className='buttonLink'>Delete <i className="fas fa-trash"></i></span>
-                    <Link to={`/admin/${blog._id}`} className='buttonLink'>
+                    <Link to={`/admin/igpost/${blog._id}`} className='buttonLink'>
                         Preview <i className="fas fa-arrow-right"></i>
                     </Link>
                 </div>
@@ -83,12 +83,12 @@ const AdminBlogListings = () => {
     )}
 
 
-const AdminBlog = () => {
+const AdminIgPost = () => {
     return (
         <div>
-            <Toolbar pathname='signOut'/>
+            <Toolbar/>
             <div className="overlap">
-                <div id="blog-admin">
+                <div className="admin-body">
                     <section id="blog-filter">
                         <input htmlFor="title" placeholder="Search title..." id="admin-blog-search"/>
                     </section>
@@ -97,9 +97,8 @@ const AdminBlog = () => {
                     </section>             
                 </div>
             </div>
-           
         </div>
     );
 }
 
-export default AdminBlog;
+export default AdminIgPost;

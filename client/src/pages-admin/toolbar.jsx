@@ -1,35 +1,27 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
-class Toolbar extends React.Component{
-    render(){
-        return(
-        <header id='adminHeader'>
-            <PrevPage pathname={this.props.pathname}/>
-            <a id="adminLogo" href="/admin"><img className="logo"  alt="" src={require('../images/logo.svg')}/></a>
-            <div id="toolbar">
-                <p>Hello, Ken !</p> 
+const Toolbar = () =>{
+    return(
+        <div className='adminMenu'>
+            <Link to='/admin'><img className="logo" alt="" src={require('../images/logo.svg')}/></Link>
+            <Link to='/admin' className="menu-list">
+                <i className="fa-brands fa-flipboard"/>DashBoard<i class="fa-solid fa-angle-right"/>
+            </Link>
+            <Link to='/admin/igpost' className="menu-list">
+                <i class="fa-brands fa-instagram"/>IG Posts<i class="fa-solid fa-angle-right"/>
+            </Link>
+            <Link to='/admin/blog' className="menu-list">
+                <i className="fa-regular fa-newspaper"/>Blogs<i class="fa-solid fa-angle-right"/>
+            </Link>
+            <Link className="menu-list">
+                <i className="fa-solid fa-gear"/>Contact Admin<i class="fa-solid fa-angle-right"/>
+            </Link>
+            <div className="menu-user menu-list">
+                <i class="fa-solid fa-user"/>Ken Au<Link to="/"><i class="fa-solid fa-right-from-bracket"></i></Link>
             </div>
-        </header>
+        </div>
         )
-    }
 }
 
-class PrevPage extends React.Component{
-    render(){
-    if(this.props.pathname !=='signOut'){
-        return(
-            <a href="/admin" id="signOut">
-                <i className="fas fa-arrow-left"></i> Back To Admin Page
-            </a>
-        )
-    }
-    else{
-       return(
-        <a href="/" id="signOut">
-            <i className="fas fa-arrow-left"></i> Sign out
-        </a>
-        ) 
-    }
-}
-}
 export default Toolbar;
