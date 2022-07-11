@@ -10,8 +10,8 @@ const Toolbar = () =>{
     }
     return(
         <div className='adminMenu'>
-            <Link to='/admin'><img className="logo" alt="" src={require('../images/logo.svg')}/></Link>
-            <Link to='/admin' className="menu-list">
+            <Link to='/admin/home'><img className="logo" alt="" src={require('../images/logo.svg')}/></Link>
+            <Link to='/admin/home' className="menu-list">
                 <i className="fa-brands fa-flipboard"/>DashBoard<i className="fa-solid fa-angle-right"/>
             </Link>
             <Link to='/admin/igpost' className="menu-list">
