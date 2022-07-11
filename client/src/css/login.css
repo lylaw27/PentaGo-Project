@@ -1,0 +1,39 @@
+.login-page{
+    background-color:#BE2C2D;
+    height: 100vh;
+}
+.login-page img{
+    display: block;
+    margin: auto;
+    height: 80px;
+}
+.login-page label{
+    display: block;
+    margin: auto;
+    color: white;
+}
+.login-page input{
+    display: block;
+    width: 100%;
+    margin: auto;
+    height: 20px;
+}
+.login-page .submit-button{
+    position: relative;
+    top: 10px;
+    width: 100px;
+    height: 40px;
+    background-color: #BE2C2D;
+    color: white;
+    font-size: 15px;
+    border: 2px solid white;
+}
+.login-page .submit-button:hover{
+    background-color: #a32626;
+}
+.login-panel{
+    position: relative;
+    top: 130px;
+    width: 300px;
+    margin: auto;
+}

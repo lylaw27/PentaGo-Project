@@ -24,7 +24,7 @@ const Header = () =>{
           </nav>
           <nav className='nav-mobile'>
             <div onClick={navDropdown}>
-              <i class="fa-solid fa-bars"/>
+              <i className="fa-solid fa-bars"/>
             </div>
           </nav>
         </div>

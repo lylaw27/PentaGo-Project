@@ -12,7 +12,7 @@ const BlogPagination = () =>{
         currentPage = 1;
     }
     let apipath = 'igPostListingsCount'
-    if(path == '/blog' || path == '/admin/blog'){
+    if(path === '/blog' || path === '/admin/blog'){
         apipath = 'blogListingsCount'
     }
     const getBlogCount = () => {
