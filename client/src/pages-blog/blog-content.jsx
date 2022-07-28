@@ -1,5 +1,5 @@
 import React, {useEffect,useState,useRef} from 'react';
-import { useParams,useHistory, Link } from 'react-router-dom';
+import { useParams,useHistory, Link, useRouteMatch } from 'react-router-dom';
 import ImageGallery from 'react-image-gallery';
 import Header from './header.jsx';
 import Footer from './footer.jsx';
@@ -31,8 +31,13 @@ const Blogcontent = () => {
     const {blogId} = useParams();
     const scrollRef = useRef(null);
     const currentURL = window.location.href;
+    const routeMatch = useRouteMatch("/blog/:blogId")
+    let apipath = 'igPostListings';
+    if(routeMatch){
+        apipath = 'blogListings'
+    }
     const getBlogDetail = () => {
-        axios.get(`/api/blogListings/${blogId}`)
+        axios.get(`/api/${apipath}/${blogId}`)
         .then((res) => {
             if(res.data==='notfound'){
                 history.push('/404')
@@ -66,7 +71,7 @@ const Blogcontent = () => {
         <div>
             <Header/>
             <div className="overlap">
-           <section id="background-content">
+           {/* <section id="background-content">
                 <p className="content-date">
                 {blogContent.uploadDate}
                 </p>
@@ -76,7 +81,7 @@ const Blogcontent = () => {
                 <span className="content-tag">
                 {blogContent.category}
                 </span>
-            </section>
+            </section> */}
             <section id="blog-body">
                 <div id="blog-share">
                     <i className="fas fa-share-alt"/>

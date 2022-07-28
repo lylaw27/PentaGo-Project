@@ -7,11 +7,16 @@ const BlogPagination = () =>{
     const [maxPage ,setMaxPage] = useState(0);
     let currentPage = parseInt(new URLSearchParams(useLocation().search).get('page'));
     let currentCategory = new URLSearchParams(useLocation().search).get('category');
+    let path = useLocation().pathname;
     if(!currentPage){
         currentPage = 1;
     }
+    let apipath = 'igPostListingsCount'
+    if(path === '/blog' || path === '/admin/blog'){
+        apipath = 'blogListingsCount'
+    }
     const getBlogCount = () => {
-        axios.get(`/api/blogListingsCount?category=${currentCategory}`)
+        axios.get(`/api/${apipath}?category=${currentCategory}`)
         .then((res)=>{
             setMaxPage(Math.ceil(parseInt(res.data)/8))
             let pagearray = Array.from({length: maxPage}, (_, i) => i + 1)
@@ -34,7 +39,7 @@ const BlogPagination = () =>{
     useEffect(()=>{
         getBlogCount();
         console.log(maxPage)
-    },[maxPage,currentPage,currentCategory])
+    },[maxPage,currentPage,currentCategory,path])
     return(
         <div id='pageBar'>
             <Link to={{search: `?page=${currentPage-1}&category=${currentCategory}`}} className={(currentPage === 1) ? 'pageDisabled':'pageNumber'}>

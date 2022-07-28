@@ -4,7 +4,7 @@ const ObjectId = require('mongodb').ObjectID;
 const multer = require('multer');
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const router = express.Router();
-const Listings = require('../model/blogschema.js');
+const Listings = require('../model/igpostschema.js');
 const cloudinary = require('cloudinary').v2;
 
 cloudinary.config({
@@ -45,7 +45,7 @@ const dateProcessor = (newBlog) => {
     return newBlog
 }
 
-router.post('/blogListings',upload.array('blogImage'),(req,res) => {
+router.post('/igPostListings',upload.array('blogImage'),(req,res) => {
     let newBlog = JSON.parse(req.body.blogInfo);
     let imageproperty = {
         filename: [],
@@ -70,7 +70,7 @@ router.post('/blogListings',upload.array('blogImage'),(req,res) => {
 }
 )
 
-router.get('/blogListings',(req,res) =>{
+router.get('/igPostListings',(req,res) =>{
     let page = req.query.page;
     let category = req.query.category;
     if(!category || category === 'null'){
@@ -104,7 +104,7 @@ router.get('/blogListings',(req,res) =>{
 }
 )
 
-router.get('/blogListings/:blogId',(req,res) =>{
+router.get('/igPostListings/:blogId',(req,res) =>{
     let blogId = req.params.blogId
     let result;
     Listings.findById(blogId, (err, data) => {
@@ -121,7 +121,7 @@ router.get('/blogListings/:blogId',(req,res) =>{
 }
 )
 
-router.delete('/blogListings/:blogId',(req,res) =>{
+router.delete('/igPostListings/:blogId',(req,res) =>{
     let blogId = req.params.blogId
     Listings.findById(blogId, (err, data) => {
         if(err){
@@ -143,7 +143,7 @@ router.delete('/blogListings/:blogId',(req,res) =>{
 }
 )
 
-router.put('/blogListings/:blogId',upload.array('blogImage'),(req,res) => {
+router.put('/igPostListings/:blogId',upload.array('blogImage'),(req,res) => {
     let updateBlog = JSON.parse(req.body.blogInfo);
     let blogId = req.params.blogId;
     updateBlog = dateProcessor(updateBlog)
@@ -173,7 +173,7 @@ router.put('/blogListings/:blogId',upload.array('blogImage'),(req,res) => {
     
 })
 
-router.get('/blogListingsCount',(req,res) =>{
+router.get('/igPostListingsCount',(req,res) =>{
     let category = req.query.category;
     if(!category || category === "null"){
         category = /.*/;
@@ -185,6 +185,50 @@ router.get('/blogListingsCount',(req,res) =>{
         res.send(data.toString())
     });
 }
+)
+
+router.get('/blogSuggestion/:blogId',(req,res) =>{
+    let blogId = req.params.blogId
+    Listings.aggregate([{$match: {_id: {$ne: ObjectId(blogId)}}},{ $sample: { size: 2 } }], (err,data)=>{
+        if(err){
+            console.log(err)
+        }
+        res.json(data)
+    })
+}
+)
+
+router.post('/blogSubscription',(req,res) =>{
+    const email = req.body.email;
+    console.log(email)
+    const data = {
+        members: [
+            {
+                email_address: email,
+                status: 'subscribed'
+            }
+        ]
+    }
+    const postData = JSON.stringify(data)
+    console.log(postData)
+    const options = {
+        url: 'https://us20.api.mailchimp.com/3.0/lists/80fd31cb68',
+        method : 'post',
+        headers:{
+            Authorization: 'auth 4338db2c23548f76ef1bf94cd69d6f1c-us20'
+        },
+        body: postData
+    }
+    request(options, (err ,response, body)=>{
+        if(err){
+            console.log(err)
+        }
+        if(response.statusCode === 200){
+            res.send("Subscribed!")
+            console.log('ok')
+        }
+    })
+}    
 )
 
 module.exports = router;

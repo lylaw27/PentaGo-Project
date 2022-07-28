@@ -4,7 +4,7 @@ import Toolbar from './toolbar.jsx';
 import { EditorState, convertToRaw  } from 'draft-js';
 import { Editor } from "react-draft-wysiwyg";
 
-const CreateBlog = () =>{
+const CreateIgPost = () =>{
     const [blogContent,setBlogContent] = useState({
         title: "",
         subtitle: "",
@@ -43,7 +43,7 @@ const CreateBlog = () =>{
         formData.append('blogInfo',submission);
         setSubmitDisabled(true);
         axios({
-            url:'/api/blogListings',
+            url:'/api/igPostListings',
             method:'POST',
             headers: {"Content-Type": "multipart/form-data" },
             data: formData
@@ -64,7 +64,7 @@ const CreateBlog = () =>{
             <div>
             <Toolbar/>
             <div className='admin-body uploadpage'>
-                <h2>Create Blog</h2>
+                <h2>Create IG Post</h2>
                     <form onSubmit={submit}>
                         <label htmlFor="Image">Image:</label>
                         <input type="file" name="imagefile" accept="image/*" onChange={ImageSelectionHandler} multiple required/><br/>
@@ -106,4 +106,4 @@ const CreateBlog = () =>{
         )
 }
 
-export default CreateBlog;
+export default CreateIgPost;

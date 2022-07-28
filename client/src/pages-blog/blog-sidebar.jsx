@@ -1,14 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const BlogSidebar = props =>{
     const [recentBlog,setRecentBlog] = useState([{
         _id:"",
         title: ""
     }])
+    let path = useLocation().pathname;
     const getBlogRecent = () =>{
-        axios.get('/api/blogListings')
+        axios.get(`/api/igPostListings`)
         .then((res)=>{
             setRecentBlog(res.data)
         })
@@ -23,7 +24,7 @@ const BlogSidebar = props =>{
     <div id="blog-sidebar">
         <div className="blog-sidebox">
             <h1>關於我們</h1>
-            <img id="queenimg" alt="" src={require('../images/queen.jpg')}/>
+            <img id="profileimg" alt="" src={require('../images/profilepic.png')}/>
             <p>身處香江 遠眺英倫</p>
             <p>不列顛島 地大物博</p>
             <p>歷史文化 璀璨奪目</p>
@@ -39,7 +40,7 @@ const BlogSidebar = props =>{
         <div className="blog-sidebox" id="blog-sidebox-post">
             <h1>最新帖子</h1>
             {recentBlog.map((blogList,i)=>
-                <Link key={i} to={`/${blogList._id}`}>
+                <Link key={i} to={`/igpost/${blogList._id}`}>
                     <p>{blogList.title}</p>
                 </Link>
             )}
@@ -55,11 +56,11 @@ const BlogSidebar = props =>{
         </div>
         <div className="blog-sidebox" id="blog-sidebox-post">
             <h1>分類</h1>
-            <Link to='/?category=樓價'><p>樓價</p></Link>
-            <Link to='/?category=專題'><p>專題</p></Link>
-            <Link to='/?category=歷史文化'><p>歷史文化</p></Link>
-            <Link to='/?category=就業'><p>就業</p></Link>
-            <Link to='/?category=教育'><p>教育</p></Link>
+            <Link to={`/?category=樓價`}><p>樓價</p></Link>
+            <Link to={`/?category=專題`}><p>專題</p></Link>
+            <Link to={`/?category=歷史文化`}><p>歷史文化</p></Link>
+            <Link to={`/?category=就業`}><p>就業</p></Link>
+            <Link to={`/?category=教育`}><p>教育</p></Link>
         </div>
     </div>
   )

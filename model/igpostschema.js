@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const blogSchema = new Schema({
+const igpostSchema = new Schema({
     imagefile: [String],
     image_id: [String],
     videoUrl: String,
@@ -13,6 +13,6 @@ const blogSchema = new Schema({
     category: String, 
 },{minimize: false})
 
-const blogModel = mongoose.model('blog',blogSchema); 
+const igpostModel = mongoose.model('igpost',igpostSchema);
 
-module.exports = blogModel;
+module.exports = igpostModel;

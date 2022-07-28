@@ -6,7 +6,7 @@ import { EditorState, convertFromRaw, convertToRaw  } from 'draft-js';
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
-const EditBlog = () =>{
+const EditIgPost = () =>{
     const [blogContent,setBlogContent] = useState({
         _id: "",
         title: "",
@@ -20,7 +20,7 @@ const EditBlog = () =>{
     const [submitDisabled,setSubmitDisabled] = useState(false);
     const {blogId} = useParams();
     const getPropertyDetail = () => {
-        axios.get(`/api/blogListings/${blogId}`)
+        axios.get(`/api/igPostListings/${blogId}`)
         .then((res) => {
             console.log(convertFromRaw(res.data.article))
             setBlogContent(res.data);
@@ -29,7 +29,6 @@ const EditBlog = () =>{
     }
     useEffect(()=>{
         getPropertyDetail();
-        // 
     },[])
     const onEditorStateChange = (value) =>{
         setEditorState(value);
@@ -55,7 +54,7 @@ const EditBlog = () =>{
         formData.append('blogInfo',submission);
         setSubmitDisabled(true);
         axios({
-            url:`/api/blogListings/${blogId}`,
+            url:`/api/igPostListings/${blogId}`,
             method:'PUT',
             headers: {"Content-Type": "multipart/form-data" },
             data: formData
@@ -75,7 +74,7 @@ const EditBlog = () =>{
         <div>
             <Toolbar/>
             <div className='admin-body uploadpage'>
-            <h2>Edit Blog</h2>
+            <h2>Edit IG Post</h2>
                 <form onSubmit={submit}>
                     <label htmlFor="Image">Image:</label>
                     <input type="file" name="imagefile" accept="image/*" onChange={ImageSelectionHandler} multiple/><br/>
@@ -116,4 +115,4 @@ const EditBlog = () =>{
     )
 }
 
-export default EditBlog;
+export default EditIgPost;
